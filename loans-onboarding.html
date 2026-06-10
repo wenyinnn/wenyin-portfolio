@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loans Onboarding Revamp — Case Study</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --canvas: #fdf9f7;
+      --white: #ffffff;
+      --ink: #1a1a18;
+      --stone: #5f5e5a;
+      --dust: #9e9c97;
+      --bone: #f5eae5;
+      --bone-mid: #edd9d1;
+      --border: rgba(26,26,24,0.16);
+      --red: #e24b4a;
+      --green: #1d9e75;
+      --green-light: #eef8f4;
+      --green-text: #085041;
+      --blue: #3e73cc;
+      --accent-dark: #7a3a2e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--canvas);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 240px;
+    }
+
+    @media (max-width: 1100px) { .page { padding: 0 80px; } }
+    @media (max-width: 760px) { .page { padding: 0 24px; } }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 48px 0 40px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      position: relative;
+      min-height: 335px;
+    }
+
+    .hero-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      z-index: 1;
+    }
+
+    .hero-title {
+      font-size: 52px;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--stone);
+      line-height: 25px;
+      max-width: 480px;
+      margin-bottom: 32px;
+    }
+
+    .hero-metrics {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .metric {
+      padding: 0 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .metric:first-child { padding-left: 0; }
+
+    .metric-value {
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .metric-label {
+      font-size: 13px;
+      color: var(--stone);
+      line-height: 1.5;
+    }
+
+    .metric-divider {
+      width: 1px;
+      height: 56px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    .hero-visual {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .hero-gradient {
+      position: absolute;
+      right: 60px;
+      top: 0;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle at 60% 40%, #f5c4a8 0%, #f5eae5 50%, transparent 75%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .hero-phone {
+      position: relative;
+      z-index: 1;
+      width: 165px;
+      height: 100%;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .hero-phone img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 24px;
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+
+    @media (max-width: 760px) {
+      .hero { flex-direction: column; min-height: auto; }
+      .hero-visual { position: static; width: 100%; height: 200px; justify-content: center; margin-top: 24px; }
+      .hero-phone { width: 100px; height: 200px; }
+      .hero-title { font-size: 32px; }
+    }
+
+    /* ─── TAB CHIPS ─── */
+    .tab-nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 32px 0 40px;
+    }
+
+    .tab-chip {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 9px 25px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--ink);
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s, border-color 0.18s;
+      letter-spacing: -0.02em;
+    }
+
+    .tab-chip:hover { background: #f5f5f3; }
+
+    .tab-chip.active {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--white);
+    }
+
+    /* ─── TAB CONTENT ─── */
+    .tab-content { display: none; padding-bottom: 80px; }
+    .tab-content.active { display: block; }
+
+    /* ─── SECTION LABEL ─── */
+    .section-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--dust);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    /* ─── OVERVIEW TAB ─── */
+    .overview-section { margin-bottom: 48px; }
+
+    .overview-lead {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+    .card-problem {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .card-problem-bar {
+      width: 8px;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .card-problem-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card-problem-body h4 {
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .card-problem-body p {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--stone);
+      line-height: 1.6;
+    }
+
+    /* Steps before/after */
+    .steps-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .steps-card h4 {
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .step-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 15px;
+      color: var(--stone);
+      line-height: 1.6;
+    }
+
+    .step-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--stone);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    .step-dot.green { background: var(--green); }
+    .step-dot.disabled { background: rgba(158,156,151,0.6); }
+
+    .step-item.disabled { color: rgba(158,156,151,0.8); text-decoration: line-through; }
+    .step-item.highlight { background: var(--green-light); border-radius: 8px; padding: 4px 8px; color: var(--green-text); }
+    .step-item.highlight .step-dot { background: var(--green); }
+
+    /* Outcome cards */
+    .outcome-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .outcome-cards { grid-template-columns: 1fr; } }
+
+    .outcome-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .outcome-value {
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .outcome-label {
+      font-size: 13px;
+      color: var(--stone);
+      line-height: 1.5;
+      max-width: 180px;
+      text-align: center;
+    }
+
+    /* ─── DESIGN DECISIONS TAB ─── */
+    .decision-block { margin-bottom: 64px; }
+
+    .decision-number {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--dust);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .decision-heading {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .decision-desc {
+      font-size: 15px;
+      color: var(--stone);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    /* Smart defaults info boxes */
+    .info-boxes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+    @media (max-width: 640px) { .info-boxes { grid-template-columns: 1fr; } }
+
+    .info-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .info-box h5 {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .info-box p {
+      font-size: 14px;
+      color: var(--stone);
+      line-height: 1.6;
+    }
+
+    /* Step card */
+    .step-card {
+      background: var(--canvas);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      display: none;
+    }
+
+    .step-card.active { display: block; }
+
+    /* Step header */
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 0;
+    }
+
+    .step-nav-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+      color: var(--ink);
+      transition: background 0.15s;
+      letter-spacing: -0.02em;
+    }
+
+    .step-nav-btn:hover { background: #f5f5f3; }
+
+    .step-nav-btn.invisible { visibility: hidden; pointer-events: none; }
+
+    .step-nav-btn .arrow { font-size: 12px; }
+
+    .step-info { flex: 1; text-align: center; }
+
+    .step-counter {
+      font-size: 13px;
+      color: var(--stone);
+      margin-bottom: 2px;
+    }
+
+    .step-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .step-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 0 24px;
+    }
+
+    /* Step body */
+    .step-body { display: flex; flex-direction: column; gap: 40px; }
+
+    .step-text {
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.75;
+    }
+
+    /* Flow tags */
+    .flow-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .flow-tag {
+      font-size: 13px;
+      font-weight: 500;
+      padding: 5px 13px;
+      border-radius: 8px;
+      background: var(--bone);
+      border: 1px solid var(--bone-mid);
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .flow-tag.highlighted {
+      border-color: var(--accent-dark);
+      color: var(--accent-dark);
+    }
+
+    .flow-arrow {
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    /* Phone grid */
+    .phone-grid {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .phone-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .phone-item img {
+      width: 190px;
+      height: 410px;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+    }
+
+    .phone-label {
+      font-size: 13px;
+      color: var(--stone);
+      text-align: center;
+    }
+
+    /* Statement card */
+    .statement-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .statement-bar {
+      width: 8px;
+      flex-shrink: 0;
+    }
+    .statement-bar.red { background: var(--red); }
+    .statement-bar.blue { background: var(--blue); }
+    .statement-bar.green { background: var(--green); }
+
+    .statement-body {
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+
+    .statement-type {
+      font-size: 13px;
+      color: var(--stone);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 500;
+    }
+
+    .statement-text {
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    /* Numbered insights */
+    .insights { display: flex; flex-direction: column; gap: 28px; }
+
+    .insight h5 {
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+
+    .insight p {
+      font-size: 14px;
+      color: var(--stone);
+      line-height: 1.7;
+    }
+
+    /* ─── PROCESS TAB ─── */
+    .process-section { margin-bottom: 56px; }
+
+    .process-section h3 {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--dust);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .bullet-list { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+
+    .bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--stone);
+      line-height: 1.6;
+    }
+
+    .bullet-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--stone);
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    /* Timeline */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+
+    .timeline-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 1px;
+      background: var(--white);
+    }
+
+    .timeline-item h4 {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .timeline-item p {
+      font-size: 14px;
+      color: var(--stone);
+      line-height: 1.7;
+      padding-left: 20px;
+    }
+
+    /* Constraint cards */
+    .constraint-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .constraint-bar {
+      width: 8px;
+      background: var(--stone);
+      flex-shrink: 0;
+    }
+
+    .constraint-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .constraint-body h4 {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .constraint-body p {
+      font-size: 14px;
+      color: var(--stone);
+      line-height: 1.7;
+    }
+
+    /* Next cards */
+    .next-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .next-bar {
+      width: 8px;
+      background: var(--stone);
+      flex-shrink: 0;
+    }
+
+    .next-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .next-body h4 {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .next-body p {
+      font-size: 14px;
+      color: var(--stone);
+      line-height: 1.7;
+    }
+
+    .intro-text {
+      font-size: 15px;
+      color: var(--stone);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <div class="hero-left">
+      <h1 class="hero-title">Loans Onboarding<br>Revamp</h1>
+      <p class="hero-desc">End-to-end redesign of the Credit Builder Loan onboarding to increase loan takeup for a US-based fintech.</p>
+      <div class="hero-metrics">
+        <div class="metric">
+          <span class="metric-value">+1.4%</span>
+          <span class="metric-label">Loan takeup lift</span>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric">
+          <span class="metric-value">-5%</span>
+          <span class="metric-label">Post offer drop-off</span>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric">
+          <span class="metric-value">~113k</span>
+          <span class="metric-label">Sample size</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-gradient"></div>
+      <div class="hero-phone">
+        <img src="https://www.figma.com/api/mcp/asset/2ba4de77-6e1b-4bde-8e59-bcc12cab6d41" alt="App screen recording">
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TAB NAVIGATION ─── -->
+  <nav class="tab-nav" role="tablist">
+    <button class="tab-chip active" role="tab" aria-selected="true" data-target="tab-overview">Overview</button>
+    <button class="tab-chip" role="tab" aria-selected="false" data-target="tab-decisions">Design decisions</button>
+    <button class="tab-chip" role="tab" aria-selected="false" data-target="tab-process">Process</button>
+  </nav>
+
+  <!-- ════════════════════════════════════════
+       TAB: OVERVIEW
+  ════════════════════════════════════════ -->
+  <div class="tab-content active" id="tab-overview">
+
+    <!-- THE PROBLEM -->
+    <div class="overview-section">
+      <p class="section-label">The Problem</p>
+      <p class="overview-lead">Users showed initial interest but dropped off before completing the loan application. Two core UX failures drove this.</p>
+      <div class="two-col">
+        <div class="card-problem">
+          <div class="card-problem-bar"></div>
+          <div class="card-problem-body">
+            <h4>Confusion about how funds work</h4>
+            <p>Users didn't understand why money was held in a Credit Reserve Account — they expected to receive the full approved amount.</p>
+          </div>
+        </div>
+        <div class="card-problem">
+          <div class="card-problem-bar"></div>
+          <div class="card-problem-body">
+            <h4>Flow was too long</h4>
+            <p>There are 9 steps from landing to completion. Each extra step increased the chance of abandonment before approval.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHAT CHANGED -->
+    <div class="overview-section">
+      <p class="section-label">What Changed</p>
+      <div class="two-col">
+        <div class="steps-card">
+          <h4>Before — 9 steps</h4>
+          <div class="step-list">
+            <div class="step-item"><span class="step-dot"></span> Landing screen</div>
+            <div class="step-item"><span class="step-dot"></span> Eligibility screen</div>
+            <div class="step-item"><span class="step-dot"></span> Link bank account</div>
+            <div class="step-item"><span class="step-dot"></span> Offer screen</div>
+            <div class="step-item"><span class="step-dot"></span> Membership onboarding</div>
+            <div class="step-item disabled"><span class="step-dot disabled"></span> Payment schedule setup (manual)</div>
+            <div class="step-item disabled"><span class="step-dot disabled"></span> Summary screen</div>
+            <div class="step-item disabled"><span class="step-dot disabled"></span> Credit Reserve Account setup</div>
+            <div class="step-item disabled"><span class="step-dot disabled"></span> Funds disbursement destination</div>
+            <div class="step-item"><span class="step-dot"></span> Completion</div>
+          </div>
+        </div>
+        <div class="steps-card">
+          <h4>After — 6 steps</h4>
+          <div class="step-list">
+            <div class="step-item highlight"><span class="step-dot green"></span> Landing screen + eligibility sheet</div>
+            <div class="step-item"><span class="step-dot"></span> Link bank account</div>
+            <div class="step-item highlight"><span class="step-dot green"></span> Offer screen + Credit Reserve Account + Funds disbursement destination</div>
+            <div class="step-item"><span class="step-dot"></span> Membership onboarding</div>
+            <div class="step-item highlight"><span class="step-dot green"></span> Payment schedule (auto detect)</div>
+            <div class="step-item"><span class="step-dot"></span> Completion</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTCOME -->
+    <div class="overview-section">
+      <p class="section-label">Outcome</p>
+      <div class="outcome-cards">
+        <div class="outcome-card">
+          <span class="outcome-value">+1.4%</span>
+          <span class="outcome-label">Absolute lift in loan takeup among first time users</span>
+        </div>
+        <div class="outcome-card">
+          <span class="outcome-value">-6%</span>
+          <span class="outcome-label">Drop-off after loan offer screen</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-overview -->
+
+
+  <!-- ════════════════════════════════════════
+       TAB: DESIGN DECISIONS
+  ════════════════════════════════════════ -->
+  <div class="tab-content" id="tab-decisions">
+
+    <!-- ── DECISION 1 ── -->
+    <div class="decision-block">
+      <p class="decision-number">Decision 1: Reducing Flow Length</p>
+      <h2 class="decision-heading">Streamlining the offer flow</h2>
+      <p class="decision-desc">The original flow had too many steps and 10–20% of users dropped off at each screen. To optimise the flow, we explored which screens could logically be combined, starting with the most obvious candidate, then landing on a better solution after identifying a key concern.</p>
+
+      <!-- Step 1 -->
+      <div class="step-card active" id="d1s1">
+        <div class="step-header">
+          <button class="step-nav-btn invisible"><span class="arrow">‹</span> Prev</button>
+          <div class="step-info">
+            <div class="step-counter">Step 1 of 3</div>
+            <div class="step-title">V1: The original flow</div>
+          </div>
+          <button class="step-nav-btn" onclick="showStep('d1',2)">Next <span class="arrow">›</span></button>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-body">
+          <p class="step-text">The original flow had separate screens for everything — users had to navigate through each step sequentially with no sense of what was related.</p>
+          <div class="flow-tags">
+            <span class="flow-tag">Offer screen</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-tag">Membership onboarding</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-tag">Payment schedule setup</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-tag">Credit Reserve setup</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-tag">Funds destination</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-tag">Completion</span>
+          </div>
+          <div class="phone-grid">
+            <div class="phone-item">
+              <img src="https://www.figma.com/api/mcp/asset/3f74419e-4a5f-4eea-8e8f-d50134c31a8a" alt="Offer screen">
+              <span class="phone-label">Offer screen</span>
+            </div>
+            <div class="phone-item">
+              <img src="https://www.figma.com/api/mcp/asset/65362da3-3527-4abf-8ebf-fda4c6e2a829" alt="Membership onboarding">
+              <span class="phone-label">Membership onboarding</span>
+            </div>
+            <div class="phone-item">
+              <img src="https://www.figma.com/api/mcp/asset/217604e7-85fd-4e7a-b720-d245e97f6d98" alt="Funds destination">
+              <span class="phone-label">Funds destination</span>
+            </div>
+          </div>
+          <div class="statement-card">
+            <div class="statement-bar red"></div>
+            <div class="statement-body">
+              <span class="statement-type">Problem</span>
+              <p class="statement-text">Too many sequential screens for what is conceptually one moment — the user accepting their loan. Each screen felt like a new decision, increasing drop-off.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step-card" id="d1s2">
+        <div class="step-header">
+          <button class="step-nav-btn" onclick="showStep('d1',1)"><span class="arrow">‹</span> Prev</button>
+          <div class="step-info">
+            <div class="step-counter">Step 2 of 3</div>
+            <div class="step-title">V2: Offer + Membership Onboarding</div>
+          </div>
+          <button class="step-nav-btn" onclick="showStep('d1',3)">Next <span class="arrow">›</span></button>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-body">
+          <p class="step-text">My first instinct was to combine the offer and membership screens — since membership is mandatory to take the loan, showing both together would give users a complete picture of what they're signing up for in one view.</p>
+          <div class="flow-tags">
+            <span class="flow-tag highlighted">Offer screen + Membership onboarding</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-tag">Payment schedule setup</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-tag">Credit Reserve setup</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-tag">Funds destination</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-tag">Completion</span>
+          </div>
+          <div class="phone-grid">
+            <div class="phone-item">
+              <img src="https://www.figma.com/api/mcp/asset/4a3ca46f-5ced-40de-a839-b520f43ac2d3" alt="Offer + Membership combined">
+              <span class="phone-label">Offer screen + Membership onboarding combined</span>
+            </div>
+          </div>
+          <div class="statement-card">
+            <div class="statement-bar red"></div>
+            <div class="statement-body">
+              <span class="statement-type">Concern Raised</span>
+              <p class="statement-text">Showing $19.99/month membership together with $500 loan amount creates a money direction conflict. The $500 is what users receive, while $19.99 is what they pay.</p>
+            </div>
+          </div>
+          <div class="insights">
+            <div class="insight">
+              <h5>1. The logic made sense, but it created a new problem</h5>
+              <p>Membership is genuinely mandatory to take the loan, so combining them makes structural sense. But mixing "what you get" (loan) with "what you pay" (membership) on the same screen confused the value story.</p>
+            </div>
+            <div class="insight">
+              <h5>2. Trust risk at the worst possible moment</h5>
+              <p>Users on the offer screen are at their highest intent point. Introducing fee confusion here risks drop-off precisely when they are most likely to convert. This is too costly a trade-off.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step-card" id="d1s3">
+        <div class="step-header">
+          <button class="step-nav-btn" onclick="showStep('d1',2)"><span class="arrow">‹</span> Prev</button>
+          <div class="step-info">
+            <div class="step-counter">Step 3 of 3</div>
+            <div class="step-title">Chosen: Offer + Credit Reserve + Funds Destination</div>
+          </div>
+          <button class="step-nav-btn invisible">Next <span class="arrow">›</span></button>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-body">
+          <p class="step-text">Since membership couldn't share the offer screen without causing confusion, we looked at what else could be combined. Credit Reserve setup and Funds destination are directly related to the offer amounts already shown — a natural fit.</p>
+          <div class="flow-tags">
+            <span class="flow-tag highlighted">Offer screen + Credit Reserve setup + Funds destination</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-tag">Membership onboarding</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-tag">Payment schedule setup</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-tag">Completion</span>
+          </div>
+          <div class="phone-grid">
+            <div class="phone-item">
+              <img src="https://www.figma.com/api/mcp/asset/4fbe1949-7753-463a-a990-0eb462da14b9" alt="Offer + Credit Reserve + Funds destination">
+              <span class="phone-label">Offer screen + Credit Reserve setup + Funds destination</span>
+            </div>
+          </div>
+          <div class="statement-card">
+            <div class="statement-bar green"></div>
+            <div class="statement-body">
+              <span class="statement-type">Chosen Direction</span>
+              <p class="statement-text">Combining offer + Credit Reserve setup + Funds destination into one screen removes 2 extra steps from the flow, keeps all amounts in the same "money you receive" frame, and lets pre-selected defaults do the work for most users.</p>
+            </div>
+          </div>
+          <div class="insights">
+            <div class="insight">
+              <h5>1. Contextual connection — users are already looking at both amounts</h5>
+              <p>The $360 and $140 are front and centre on the offer screen. Adding "where each goes" directly beneath is an answer to a question they're already asking, not a new ask.</p>
+            </div>
+            <div class="insight">
+              <h5>2. No money direction confusion</h5>
+              <p>Everything on this screen is about what the user receives and where it goes — there is no fee shown here. Membership is handled separately, keeping concerns cleanly separated.</p>
+            </div>
+            <div class="insight">
+              <h5>3. Smart defaults make it a one-tap screen for most users</h5>
+              <p>If the user has a RoarMoney account, it is pre-selected as the funds destination; otherwise we fall back to their linked bank account. For Credit Reserve, we default to the lowest-risk option. Both can be changed, but most users will simply tap Proceed — turning a 3-screen sequence into a single confirmation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /decision 1 -->
+
+
+    <!-- ── DECISION 2 ── -->
+    <div class="decision-block">
+      <p class="decision-number">Decision 2: Streamlining the Experience Further</p>
+      <h2 class="decision-heading">Reducing decisions through smart defaults</h2>
+      <p class="decision-desc">Decision 1 established the principle: pre-select RoarMoney as funds destination and the lowest risk option for Credit Reserve, so users who trust the defaults can proceed in one tap. We extended that same thinking to payment frequency. US payment cycles vary widely, and many users live paycheck to paycheck, making it critical that repayments align with when they actually have money.</p>
+
+      <div class="info-boxes">
+        <div class="info-box">
+          <h5>Funds destination</h5>
+          <p>RoarMoney pre-selected, falls back to linked bank account.</p>
+        </div>
+        <div class="info-box">
+          <h5>Credit Reserve account</h5>
+          <p>Lowest risk profile selected by default, eliminating the risk appetite questionnaire entirely.</p>
+        </div>
+        <div class="info-box">
+          <h5>Payment frequency</h5>
+          <p>Detected from linked bank, no manual selection needed.</p>
+        </div>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="step-card active" id="d2s1">
+        <div class="step-header">
+          <button class="step-nav-btn invisible"><span class="arrow">‹</span> Prev</button>
+          <div class="step-info">
+            <div class="step-counter">Step 1 of 3</div>
+            <div class="step-title">V1: The original flow</div>
+          </div>
+          <button class="step-nav-btn" onclick="showStep('d2',2)">Next <span class="arrow">›</span></button>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-body">
+          <p class="step-text">Users manually stepped through at least 3 separate screens with a CTA button on each — no progress indicator, users had no sense of how many steps remained or why the questions mattered.</p>
+          <div class="phone-grid">
+            <div class="phone-item">
+              <img src="https://www.figma.com/api/mcp/asset/29178e32-5eba-4361-a03e-c9eaa785d8b9" alt="Select frequency">
+              <span class="phone-label">Select frequency</span>
+            </div>
+            <div class="phone-item">
+              <img src="https://www.figma.com/api/mcp/asset/0df5edf2-fc6e-467a-b9e7-6e75e1664048" alt="Follow up question">
+              <span class="phone-label">Follow up question</span>
+            </div>
+            <div class="phone-item">
+              <img src="https://www.figma.com/api/mcp/asset/4df7d4e5-a8c0-4cdc-9087-435e8108fde6" alt="Specific date">
+              <span class="phone-label">Specific date</span>
+            </div>
+          </div>
+          <div class="statement-card">
+            <div class="statement-bar red"></div>
+            <div class="statement-body">
+              <span class="statement-type">Problem</span>
+              <p class="statement-text">The steps were necessary but the experience felt like a form, not a flow. No progress indicator meant users had no sense of how much remained. A pinned "Next" CTA on every screen added an extra tap after every answer, making each step feel like a separate decision rather than part of one continuous setup.</p>
+            </div>
+          </div>
+          <div class="insights">
+            <div class="insight">
+              <h5>1. CTA on every screen added unnecessary taps</h5>
+              <p>Requiring an explicit "Next" tap after every selection turned a simple choice into a two-action interaction — select, then confirm. The extra step added friction without adding value.</p>
+            </div>
+            <div class="insight">
+              <h5>2. No progress indicator — users couldn't see the end</h5>
+              <p>Without knowing how many steps remained, users had no way to judge the effort ahead, increasing the likelihood of abandoning mid-flow at a point where they had already committed to the loan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step-card" id="d2s2">
+        <div class="step-header">
+          <button class="step-nav-btn" onclick="showStep('d2',1)"><span class="arrow">‹</span> Prev</button>
+          <div class="step-info">
+            <div class="step-counter">Step 2 of 3</div>
+            <div class="step-title">V2: Reduced friction</div>
+          </div>
+          <button class="step-nav-btn" onclick="showStep('d2',3)">Next <span class="arrow">›</span></button>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-body">
+          <p class="step-text">Progress bar added so users could see how many steps remained. CTA removed from the first two screens — tapping an answer automatically advances to the next step. "Submit" button is kept only on the final screen. Users can still go back and change their answer at any point via the back button.</p>
+          <div class="phone-grid">
+            <div class="phone-item">
+              <img src="https://www.figma.com/api/mcp/asset/2382a79e-ee34-4c22-b054-02b176fa730d" alt="Select frequency">
+              <span class="phone-label">Select frequency</span>
+            </div>
+            <div class="phone-item">
+              <img src="https://www.figma.com/api/mcp/asset/cf177ed9-b022-441b-9a38-f3797b0940fd" alt="Follow up question">
+              <span class="phone-label">Follow up question</span>
+            </div>
+            <div class="phone-item">
+              <img src="https://www.figma.com/api/mcp/asset/231ba992-2baf-436a-be70-f279a206ab29" alt="Specific date">
+              <span class="phone-label">Specific date</span>
+            </div>
+          </div>
+          <div class="statement-card">
+            <div class="statement-bar blue"></div>
+            <div class="statement-body">
+              <span class="statement-type">Improvement</span>
+              <p class="statement-text">Adding the progress bar and removing intermediate CTAs meaningfully reduced the perceived effort. However, users still answered all three questions manually with no help from data we already had.</p>
+            </div>
+          </div>
+          <div class="insights">
+            <div class="insight">
+              <h5>1. Progress bar sets expectations upfront</h5>
+              <p>Users can now see 3 steps ahead — knowing the end is close reduces the chance of abandoning mid-flow. The visual also reinforces that the questions are part of one connected setup.</p>
+            </div>
+            <div class="insight">
+              <h5>2. Tap to advance feels like a conversation</h5>
+              <p>Removing the CTA from the first 2 screens means selecting an answer immediately moves forward — one action instead of two. The back button still allows changes at any point.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step-card" id="d2s3">
+        <div class="step-header">
+          <button class="step-nav-btn" onclick="showStep('d2',2)"><span class="arrow">‹</span> Prev</button>
+          <div class="step-info">
+            <div class="step-counter">Step 3 of 3</div>
+            <div class="step-title">Chosen: Smart Default</div>
+          </div>
+          <button class="step-nav-btn invisible">Next <span class="arrow">›</span></button>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-body">
+          <p class="step-text">Utilizing paycheck deposit patterns from the linked bank account, we detect the user's income frequency and pre-fill the entire repayment schedule. The 3-screen flow becomes a single confirmation.</p>
+          <div class="phone-grid">
+            <div class="phone-item">
+              <img src="https://www.figma.com/api/mcp/asset/1effa5db-7868-4533-ac91-4dd7cebdd5f8" alt="Single confirmation screen">
+              <span class="phone-label">Single confirmation screen</span>
+            </div>
+          </div>
+          <div class="statement-card">
+            <div class="statement-bar green"></div>
+            <div class="statement-body">
+              <span class="statement-type">Chosen Direction</span>
+              <p class="statement-text">Instead of asking users to configure their schedule, we detect paycheck frequency from the linked bank account and pre-fill both frequency and first payment date. The screen shifts from configuration to confirmation. The accuracy is the same, the effort is not.</p>
+            </div>
+          </div>
+          <div class="insights">
+            <div class="insight">
+              <h5>1. Data we already have does the work</h5>
+              <p>The linked bank account, connected earlier in the flow, contains recurring deposit patterns. We infer frequency and payday without asking the user anything new.</p>
+            </div>
+            <div class="insight">
+              <h5>2. Confirmation, not configuration</h5>
+              <p>The screen shifts from "choose your schedule" to "does this look right?" — a much lighter ask at a point where the user has already committed to the loan. The accuracy is the same, the effort is not.</p>
+            </div>
+            <div class="insight">
+              <h5>3. Override routes back to the V2 manual flow</h5>
+              <p>Tapping "Change" returns users to the full V2 selection flow, preserving control for users with irregular income, or who simply prefer to set it themselves.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /decision 2 -->
+
+
+    <!-- ── DECISION 3 ── -->
+    <div class="decision-block">
+      <p class="decision-number">Decision 3: User Trust &amp; Expectation Setting</p>
+      <h2 class="decision-heading">Communicating the Credit Reserve upfront, before it becomes a complaint</h2>
+      <p class="decision-desc">Part of the approved loan amount will be held until full repayment. It is a deliberate product mechanic — it protects against bad debt risk, which matters given that Credit Builder Loan users typically have lower credit scores. A significant source of user complaints was the gap between the total loan amount shown on the offer screen and the funds actually received. Users who saw $500 but received $360 felt misled, even though the $140 held in Credit Reserve was clearly stated on screen.</p>
+
+      <!-- Step 1 -->
+      <div class="step-card active" id="d3s1">
+        <div class="step-header">
+          <button class="step-nav-btn invisible"><span class="arrow">‹</span> Prev</button>
+          <div class="step-info">
+            <div class="step-counter">Moment 1</div>
+            <div class="step-title">Landing screen</div>
+          </div>
+          <button class="step-nav-btn" onclick="showStep('d3',2)">Next <span class="arrow">›</span></button>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-body">
+          <p class="step-text">The original screen presented the loan flow as a text list — users who skimmed it received no visual understanding of the fund split. The new version walks users through each step with illustrations and dedicated screens, with step 3 explicitly showing the money moving into two separate destinations.</p>
+          <div class="phone-grid">
+            <div class="phone-item">
+              <img src="https://www.figma.com/api/mcp/asset/406c9779-e739-4e77-a479-96b96db79811" alt="Before (static)">
+              <span class="phone-label">Before (Static)</span>
+            </div>
+            <div class="phone-item">
+              <img src="https://www.figma.com/api/mcp/asset/f7c94ad2-6940-4690-8f9a-9de13ca2c774" alt="After (animated)">
+              <span class="phone-label">After (animated)</span>
+            </div>
+          </div>
+          <div class="statement-card">
+            <div class="statement-bar blue"></div>
+            <div class="statement-body">
+              <span class="statement-type">Improvement</span>
+              <p class="statement-text">The original list said "Unlock your savings after building credit" — that is vague for users to connect it to a specific amount being held. The new version dedicates step 3 to a visual diagram showing the loan splitting into two destinations: "cash to the wallet today, and the remainder into Credit Reserve." It names both, shows both, and frames them as a benefit rather than a restriction — "building credit and savings at the same time."</p>
+            </div>
+          </div>
+          <div class="insights">
+            <div class="insight">
+              <h5>1. Step 3 gives the fund split its own dedicated screen</h5>
+              <p>Rather than a line in a list, the Credit Reserve concept gets a full screen with a diagram. Users engage with it as a step in the journey, not a footnote they can scroll past.</p>
+            </div>
+            <div class="insight">
+              <h5>2. Visual metaphor makes the split concrete</h5>
+              <p>The dollar sign splitting into a wallet and a piggy bank is immediately understood without reading. A user who skims the copy still absorbs the concept from the diagram — the two destinations are unmistakable.</p>
+            </div>
+            <div class="insight">
+              <h5>3. Framed as benefit, not restriction</h5>
+              <p>"Building credit and savings at the same time" positions the Credit Reserve as something working for the user, not against them. Step 5 reinforces this by showing the piggy bank unlocking — the held funds are a reward, not a loss.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step-card" id="d3s2">
+        <div class="step-header">
+          <button class="step-nav-btn" onclick="showStep('d3',1)"><span class="arrow">‹</span> Prev</button>
+          <div class="step-info">
+            <div class="step-counter">Moment 2</div>
+            <div class="step-title">Fully Secured Loan transition</div>
+          </div>
+          <button class="step-nav-btn invisible">Next <span class="arrow">›</span></button>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-body">
+          <p class="step-text">For Fully Secured Loan users, where the entire loan amount goes into Credit Reserve and they receive $0 cash upfront, the offer screen was the first place they learned this. Seeing "$500" on the eligibility screen and then "$0 transferred today" on the offer screen was the sharpest version of the "where's my money?" complaint. We added a transition animation between these two screens to set the expectation before the details appear.</p>
+          <div class="phone-grid">
+            <div class="phone-item">
+              <img src="https://www.figma.com/api/mcp/asset/2ba4de77-6e1b-4bde-8e59-bcc12cab6d41" alt="Transition animation">
+              <span class="phone-label">Transition animation</span>
+            </div>
+          </div>
+          <div class="statement-card">
+            <div class="statement-bar blue"></div>
+            <div class="statement-body">
+              <span class="statement-type">Improvement</span>
+              <p class="statement-text">The transition animation creates a deliberate pause between the two screens, explicitly stating "Funds will be available after full loan repayment" with a visual of a piggy bank and a "12 mo" marker. By the time the details screen slides up, the $0 upfront is an expected confirmation rather than a shock.</p>
+            </div>
+          </div>
+          <div class="insights">
+            <div class="insight">
+              <h5>1. Targeted specifically at Fully Secured Loan (FSL) users</h5>
+              <p>This transition only plays for FSL — the loan type with the highest potential for the "where's my money?" complaint, since users receive no cash upfront. Partial loan users have a different animation that shows the fund split rather than the hold message.</p>
+            </div>
+            <div class="insight">
+              <h5>2. Rive state machines serve the right animation per loan type</h5>
+              <p>FSL users see the piggy bank hold animation. Partial loan users see a fund-split animation. Built in Rive to allow state-based switching without duplicating assets — the system always shows the animation that's accurate to the user's actual offer.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /decision 3 -->
+
+  </div><!-- /tab-decisions -->
+
+
+  <!-- ════════════════════════════════════════
+       TAB: PROCESS
+  ════════════════════════════════════════ -->
+  <div class="tab-content" id="tab-process">
+
+    <!-- MY ROLE -->
+    <div class="process-section">
+      <h3>My Role</h3>
+      <div class="steps-card" style="max-width:520px;">
+        <div class="bullet-list">
+          <div class="bullet-item"><span class="bullet-dot"></span> Solo product designer</div>
+          <div class="bullet-item"><span class="bullet-dot"></span> 1 product owner</div>
+          <div class="bullet-item"><span class="bullet-dot"></span> 2 frontend engineers</div>
+          <div class="bullet-item"><span class="bullet-dot"></span> 2 QA engineers</div>
+          <div class="bullet-item"><span class="bullet-dot"></span> 2 data analysts</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW THE PROJECT UNFOLDED -->
+    <div class="process-section">
+      <h3>How the Project Unfolded</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>Discovery</h4>
+          <p>Identified root causes from funnel analytics: a significant drop-off between screens driven by a 9-step flow, and a recurring complaint about the Credit Reserve amount — users receiving less cash than expected and feeling misled. Worked with data analysts to validate both problems before defining the brief.</p>
+        </div>
+        <div class="timeline-item" style="margin-top:12px;">
+          <h4>Phase 1: UI lift only</h4>
+          <p>Updated the landing screen visuals, copy, and animation without changing the underlying flow. This gave us a clean, controlled baseline to measure Phase 2 against, ensuring any lift from the flow redesign could be attributed to UX decisions, not just visual polish.</p>
+        </div>
+        <div class="timeline-item" style="margin-top:12px;">
+          <h4>Phase 2: Refine the flow</h4>
+          <p>Shortened the flow from 9 to 6 steps: combined the offer, Credit Reserve, and funds destination into one screen with smart pre-selections; replaced manual payment frequency setup with auto-detection; introduced the 5-step landing animation and FSL transition. A/B tested against Phase 1 at 50% rollout.</p>
+        </div>
+        <div class="timeline-item" style="margin-top:12px;">
+          <h4>Navigating stakeholder alignment</h4>
+          <p>Throughout both phases, designs went through multiple rounds of review across teams with different priorities, including legal &amp; compliance, product marketing, engineering, and leadership.</p>
+        </div>
+        <div class="timeline-item" style="margin-top:12px;">
+          <h4>Result &amp; handoff</h4>
+          <p>Phase 2 delivered +1.4% loan takeup lift and a 5% improvement in post-offer conversion. Designs handed off with annotated specs and component documentation. Continued to iterate post-launch based on funnel data and user feedback.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONSTRAINTS -->
+    <div class="process-section">
+      <h3>Constraints We Designed Around</h3>
+      <p class="intro-text">Not every idea made it to the final design, and the ones that didn't reveal as much about the project as the ones that did. These are the tradeoffs we made deliberately.</p>
+
+      <div class="constraint-card">
+        <div class="constraint-bar"></div>
+        <div class="constraint-body">
+          <h4>Wordy screens: tension between disclosure and clarity</h4>
+          <p>Legal and product marketing needed to ensure users were fully informed at every step — membership terms, Credit Reserve behavior, payment authorizations. This is legitimate and necessary, especially for a financial product with regulatory obligations. But more required text meant longer screens, more scrolling, and lower comprehension — the opposite of what we were trying to achieve with the flow redesign.</p>
+        </div>
+      </div>
+
+      <div class="constraint-card">
+        <div class="constraint-bar"></div>
+        <div class="constraint-body">
+          <h4>Simplest Credit Reserve Account solution was off the table: contractual constraints</h4>
+          <p>The cleanest solution to the Credit Reserve onboarding complexity was to remove it entirely, routing Credit Reserve funds directly into users' RoarMoney account instead of a separate Managed Investing product. Most Credit Builder Loan users already have a RoarMoney account, and funds held there would eliminate the CRA setup flow, the risk questionnaire, and the confusion about where money goes. Straightforward from a UX perspective — but blocked by a contractual arrangement with the Managed Investing provider.</p>
+        </div>
+      </div>
+
+      <div class="constraint-card">
+        <div class="constraint-bar"></div>
+        <div class="constraint-body">
+          <h4>Fully Secured Loan: communicating $0 upfront without hurting conversion</h4>
+          <p>For Fully Secured Loan users, the most honest design would prominently surface "$0 cash upfront" early in the flow, making it impossible to miss. But product was concerned that leading with a zero-dollar amount would deter users from completing the application, reducing conversion for a loan type that still genuinely benefits them. Both concerns were valid, and they pulled in opposite directions.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHAT'S NEXT -->
+    <div class="process-section">
+      <h3>What's Next</h3>
+      <p class="intro-text">Even with the refinements shipped, there's room to go further. These are the areas actively being explored.</p>
+
+      <div class="next-card">
+        <div class="next-bar" style="background:var(--stone)"></div>
+        <div class="next-body">
+          <h4>Reaching the unserved</h4>
+          <p>Tailoring the flow for gig workers, students, and freelancers who need credit building most but have non-standard income patterns — irregular deposits that break the auto-detect logic and require a more flexible payment setup experience.</p>
+        </div>
+      </div>
+
+      <div class="next-card">
+        <div class="next-bar" style="background:var(--stone)"></div>
+        <div class="next-body">
+          <h4>Personalizing for returning users</h4>
+          <p>Reloan users already understand how Credit Builder Plus works — they don't need the same onboarding. An adaptive flow that skips what they already know and surfaces only what's changed could meaningfully increase re-conversion without adding complexity for new users.</p>
+        </div>
+      </div>
+
+      <div class="next-card">
+        <div class="next-bar" style="background:var(--stone)"></div>
+        <div class="next-body">
+          <h4>Re-engaging drop-off users</h4>
+          <p>Users who abandon mid-flow are high-intent — they started the application. Post-dropoff re-education messaging tied to where they left off could recover meaningful conversion without requiring them to restart from the beginning.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-process -->
+
+</div><!-- /page -->
+
+<script>
+  // ─── Tab switching ───────────────────────────────────────────────
+  document.querySelectorAll('.tab-chip').forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      var target = this.getAttribute('data-target');
+      document.querySelectorAll('.tab-chip').forEach(function(c) {
+        c.classList.remove('active');
+        c.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.tab-content').forEach(function(t) {
+        t.classList.remove('active');
+      });
+      this.classList.add('active');
+      this.setAttribute('aria-selected', 'true');
+      document.getElementById(target).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // ─── Step carousel ───────────────────────────────────────────────
+  function showStep(decision, stepNum) {
+    // Hide all steps for this decision
+    var cards = document.querySelectorAll('[id^="' + decision + 's"]');
+    cards.forEach(function(card) { card.classList.remove('active'); });
+    // Show target step
+    var target = document.getElementById(decision + 's' + stepNum);
+    if (target) {
+      target.classList.add('active');
+      target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+</script>
+</body>
+</html>
