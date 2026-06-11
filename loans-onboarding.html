@@ -701,6 +701,47 @@
       line-height: 1.7;
       margin-bottom: 24px;
     }
+
+    /* ─── ROLE CARD ─── */
+    .role-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      width: 100%;
+    }
+
+    .role-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .role-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 8px;
+      border-radius: 8px;
+      font-size: 15px;
+      color: var(--stone);
+      line-height: 1.6;
+    }
+
+    .role-item--highlight {
+      background: var(--green-light);
+      color: var(--green-text);
+    }
+
+    .role-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--stone);
+      flex-shrink: 0;
+    }
+
+    .role-dot--green { background: var(--green); }
   </style>
 </head>
 <body>
@@ -731,7 +772,7 @@
     <div class="hero-visual">
       <div class="hero-gradient"></div>
       <div class="hero-phone">
-        <img src="https://www.figma.com/api/mcp/asset/2ba4de77-6e1b-4bde-8e59-bcc12cab6d41" alt="App screen recording">
+        <img src="images/loans/hero-phone.gif" alt="App screen recording">
       </div>
     </div>
   </section>
@@ -860,15 +901,15 @@
           </div>
           <div class="phone-grid">
             <div class="phone-item">
-              <img src="https://www.figma.com/api/mcp/asset/3f74419e-4a5f-4eea-8e8f-d50134c31a8a" alt="Offer screen">
+              <img src="images/loans/d1-s1-offer.png" alt="Offer screen">
               <span class="phone-label">Offer screen</span>
             </div>
             <div class="phone-item">
-              <img src="https://www.figma.com/api/mcp/asset/65362da3-3527-4abf-8ebf-fda4c6e2a829" alt="Membership onboarding">
+              <img src="images/loans/d1-s1-membership.png" alt="Membership onboarding">
               <span class="phone-label">Membership onboarding</span>
             </div>
             <div class="phone-item">
-              <img src="https://www.figma.com/api/mcp/asset/217604e7-85fd-4e7a-b720-d245e97f6d98" alt="Funds destination">
+              <img src="images/loans/d1-s1-funds.png" alt="Funds destination">
               <span class="phone-label">Funds destination</span>
             </div>
           </div>
@@ -908,7 +949,7 @@
           </div>
           <div class="phone-grid">
             <div class="phone-item">
-              <img src="https://www.figma.com/api/mcp/asset/4a3ca46f-5ced-40de-a839-b520f43ac2d3" alt="Offer + Membership combined">
+              <img src="images/loans/d1-s2-combined.png" alt="Offer + Membership combined">
               <span class="phone-label">Offer screen + Membership onboarding combined</span>
             </div>
           </div>
@@ -956,7 +997,7 @@
           </div>
           <div class="phone-grid">
             <div class="phone-item">
-              <img src="https://www.figma.com/api/mcp/asset/4fbe1949-7753-463a-a990-0eb462da14b9" alt="Offer + Credit Reserve + Funds destination">
+              <img src="images/loans/d1-s3-chosen.png" alt="Offer + Credit Reserve + Funds destination">
               <span class="phone-label">Offer screen + Credit Reserve setup + Funds destination</span>
             </div>
           </div>
@@ -1022,15 +1063,15 @@
           <p class="step-text">Users manually stepped through at least 3 separate screens with a CTA button on each — no progress indicator, users had no sense of how many steps remained or why the questions mattered.</p>
           <div class="phone-grid">
             <div class="phone-item">
-              <img src="https://www.figma.com/api/mcp/asset/29178e32-5eba-4361-a03e-c9eaa785d8b9" alt="Select frequency">
+              <img src="images/loans/d2-s1-frequency.png" alt="Select frequency">
               <span class="phone-label">Select frequency</span>
             </div>
             <div class="phone-item">
-              <img src="https://www.figma.com/api/mcp/asset/0df5edf2-fc6e-467a-b9e7-6e75e1664048" alt="Follow up question">
+              <img src="images/loans/d2-s1-followup.png" alt="Follow up question">
               <span class="phone-label">Follow up question</span>
             </div>
             <div class="phone-item">
-              <img src="https://www.figma.com/api/mcp/asset/4df7d4e5-a8c0-4cdc-9087-435e8108fde6" alt="Specific date">
+              <img src="images/loans/d2-s1-date.png" alt="Specific date">
               <span class="phone-label">Specific date</span>
             </div>
           </div>
@@ -1069,15 +1110,15 @@
           <p class="step-text">Progress bar added so users could see how many steps remained. CTA removed from the first two screens — tapping an answer automatically advances to the next step. "Submit" button is kept only on the final screen. Users can still go back and change their answer at any point via the back button.</p>
           <div class="phone-grid">
             <div class="phone-item">
-              <img src="https://www.figma.com/api/mcp/asset/2382a79e-ee34-4c22-b054-02b176fa730d" alt="Select frequency">
+              <img src="images/loans/d2-s2-frequency.png" alt="Select frequency">
               <span class="phone-label">Select frequency</span>
             </div>
             <div class="phone-item">
-              <img src="https://www.figma.com/api/mcp/asset/cf177ed9-b022-441b-9a38-f3797b0940fd" alt="Follow up question">
+              <img src="images/loans/d2-s2-followup.png" alt="Follow up question">
               <span class="phone-label">Follow up question</span>
             </div>
             <div class="phone-item">
-              <img src="https://www.figma.com/api/mcp/asset/231ba992-2baf-436a-be70-f279a206ab29" alt="Specific date">
+              <img src="images/loans/d2-s2-date.png" alt="Specific date">
               <span class="phone-label">Specific date</span>
             </div>
           </div>
@@ -1116,7 +1157,7 @@
           <p class="step-text">Utilizing paycheck deposit patterns from the linked bank account, we detect the user's income frequency and pre-fill the entire repayment schedule. The 3-screen flow becomes a single confirmation.</p>
           <div class="phone-grid">
             <div class="phone-item">
-              <img src="https://www.figma.com/api/mcp/asset/1effa5db-7868-4533-ac91-4dd7cebdd5f8" alt="Single confirmation screen">
+              <img src="images/loans/d2-s3-confirmation.png" alt="Single confirmation screen">
               <span class="phone-label">Single confirmation screen</span>
             </div>
           </div>
@@ -1167,11 +1208,11 @@
           <p class="step-text">The original screen presented the loan flow as a text list — users who skimmed it received no visual understanding of the fund split. The new version walks users through each step with illustrations and dedicated screens, with step 3 explicitly showing the money moving into two separate destinations.</p>
           <div class="phone-grid">
             <div class="phone-item">
-              <img src="https://www.figma.com/api/mcp/asset/406c9779-e739-4e77-a479-96b96db79811" alt="Before (static)">
+              <img src="images/loans/d3-s1-before.png" alt="Before (static)">
               <span class="phone-label">Before (Static)</span>
             </div>
             <div class="phone-item">
-              <img src="https://www.figma.com/api/mcp/asset/f7c94ad2-6940-4690-8f9a-9de13ca2c774" alt="After (animated)">
+              <img src="images/loans/d3-s1-after.gif" alt="After (animated)">
               <span class="phone-label">After (animated)</span>
             </div>
           </div>
@@ -1214,7 +1255,7 @@
           <p class="step-text">For Fully Secured Loan users, where the entire loan amount goes into Credit Reserve and they receive $0 cash upfront, the offer screen was the first place they learned this. Seeing "$500" on the eligibility screen and then "$0 transferred today" on the offer screen was the sharpest version of the "where's my money?" complaint. We added a transition animation between these two screens to set the expectation before the details appear.</p>
           <div class="phone-grid">
             <div class="phone-item">
-              <img src="https://www.figma.com/api/mcp/asset/2ba4de77-6e1b-4bde-8e59-bcc12cab6d41" alt="Transition animation">
+              <img src="images/loans/d3-s2-transition.gif" alt="Transition animation">
               <span class="phone-label">Transition animation</span>
             </div>
           </div>
@@ -1250,13 +1291,28 @@
     <!-- MY ROLE -->
     <div class="process-section">
       <h3>My Role</h3>
-      <div class="steps-card" style="max-width:520px;">
-        <div class="bullet-list">
-          <div class="bullet-item"><span class="bullet-dot"></span> Solo product designer</div>
-          <div class="bullet-item"><span class="bullet-dot"></span> 1 product owner</div>
-          <div class="bullet-item"><span class="bullet-dot"></span> 2 frontend engineers</div>
-          <div class="bullet-item"><span class="bullet-dot"></span> 2 QA engineers</div>
-          <div class="bullet-item"><span class="bullet-dot"></span> 2 data analysts</div>
+      <div class="role-card">
+        <div class="role-list">
+          <div class="role-item role-item--highlight">
+            <span class="role-dot role-dot--green"></span>
+            <span>Solo product designer</span>
+          </div>
+          <div class="role-item">
+            <span class="role-dot"></span>
+            <span>1 product owner</span>
+          </div>
+          <div class="role-item">
+            <span class="role-dot"></span>
+            <span>2 frontend engineers</span>
+          </div>
+          <div class="role-item">
+            <span class="role-dot"></span>
+            <span>2 QA engineers</span>
+          </div>
+          <div class="role-item">
+            <span class="role-dot"></span>
+            <span>2 data analysts</span>
+          </div>
         </div>
       </div>
     </div>
