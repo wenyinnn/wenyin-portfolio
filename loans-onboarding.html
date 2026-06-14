@@ -279,8 +279,13 @@
     .step-dot.disabled { background: rgba(158,156,151,0.6); }
 
     .step-item.disabled  { color: rgba(158,156,151,0.8); text-decoration: line-through; }
-    .step-item.highlight { background: var(--green-light); border-radius: 8px; padding: 4px 8px; color: var(--green-text); }
+    .step-item.highlight { color: var(--green-text); }
     .step-item.highlight .step-dot { background: var(--green); }
+    .step-item.highlight span.step-label {
+      background: var(--green-light);
+      border-radius: 8px;
+      padding: 3px 8px;
+    }
 
     /* Outcome cards */
     .outcome-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -507,32 +512,33 @@
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 24px;
+      padding: 0 24px;
       display: flex;
       flex-direction: column;
-      gap: 0;
+      list-style: none;
     }
 
     .timeline-phase {
-      padding: 20px 0;
+      padding: 24px 0;
       border-bottom: 1px solid var(--border);
+      list-style: none;
     }
 
-    .timeline-phase:first-child { padding-top: 0; }
-    .timeline-phase:last-child  { padding-bottom: 0; border-bottom: none; }
+    .timeline-phase:last-child { border-bottom: none; }
 
     .timeline-phase h4 {
       font-size: 16px;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--ink);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      line-height: 1.4;
     }
 
     .timeline-phase p {
       font-size: 14px;
       color: var(--stone);
-      line-height: 1.7;
-      padding-left: 16px;
+      line-height: 1.75;
+      padding-left: 24px;
     }
 
     /* Constraint cards — red bar */
@@ -660,11 +666,11 @@
         <div class="steps-card">
           <h4>After — 6 steps</h4>
           <div class="step-list">
-            <div class="step-item highlight"><span class="step-dot green"></span> Landing screen + eligibility sheet</div>
+            <div class="step-item highlight"><span class="step-dot green"></span><span class="step-label">Landing screen + eligibility sheet</span></div>
             <div class="step-item"><span class="step-dot"></span> Link bank account</div>
-            <div class="step-item highlight"><span class="step-dot green"></span> Offer screen + Credit Reserve Account + Funds disbursement destination</div>
+            <div class="step-item highlight"><span class="step-dot green"></span><span class="step-label">Offer screen + Credit Reserve Account + Funds disbursement destination</span></div>
             <div class="step-item"><span class="step-dot"></span> Membership onboarding</div>
-            <div class="step-item highlight"><span class="step-dot green"></span> Payment schedule (auto detect)</div>
+            <div class="step-item highlight"><span class="step-dot green"></span><span class="step-label">Payment schedule (auto detect)</span></div>
             <div class="step-item"><span class="step-dot"></span> Completion</div>
           </div>
         </div>
