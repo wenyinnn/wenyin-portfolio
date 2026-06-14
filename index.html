@@ -21,7 +21,6 @@
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--white);
@@ -29,23 +28,26 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ─── NAVBAR ─── */
+    /* ─── NAVBAR (shared) ─── */
     .navbar {
-      position: sticky;
-      top: 0;
+      position: fixed;
+      top: 0; left: 0; right: 0;
       z-index: 100;
       background: var(--white);
-      border-bottom: 1px solid var(--border);
+      /* homepage: hidden until scroll */
+      transform: translateY(-100%);
+      transition: transform 0.3s ease, border-radius 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .navbar-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 240px;
+    .navbar.nav-visible { transform: translateY(0); }
+
+    .navbar-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0 240px;
       height: 72px;
+      border-bottom: 1px solid var(--border);
     }
 
     .navbar-logo {
@@ -57,14 +59,14 @@
       text-transform: capitalize;
     }
 
-    .navbar-burger {
+    .navbar-burger, .navbar-close-btn {
       background: none;
       border: none;
       cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
       padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .navbar-burger span {
@@ -73,6 +75,62 @@
       height: 2px;
       background: var(--ink);
       border-radius: 2px;
+      margin: 3px 0;
+    }
+
+    .navbar-close-btn {
+      font-size: 24px;
+      color: var(--ink);
+      width: 32px;
+      height: 32px;
+      line-height: 1;
+    }
+
+    /* Expanded menu panel */
+    .navbar-menu {
+      display: none;
+      padding: 0 240px 20px;
+    }
+
+    .navbar-menu-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+
+    .navbar-link {
+      display: block;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--stone);
+      text-decoration: none;
+      padding: 16px 16px 16px 48px;
+      letter-spacing: -0.02em;
+      transition: color 0.15s;
+    }
+
+    .navbar-link:hover { color: var(--ink); }
+
+    /* open state */
+    .navbar.menu-open {
+      border-radius: 0 0 40px 40px;
+      box-shadow: 0px 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .navbar.menu-open .navbar-bar { border-bottom: none; }
+    .navbar.menu-open .navbar-menu { display: block; }
+
+    @media (max-width: 1100px) {
+      .navbar-bar  { padding: 0 80px; }
+      .navbar-menu { padding: 0 80px 20px; }
+    }
+    @media (max-width: 760px) {
+      .navbar-bar  { padding: 0 24px; }
+      .navbar-menu { padding: 0 24px 20px; }
+      .navbar-link { padding-left: 24px; }
     }
 
     /* ─── PAGE ─── */
@@ -82,15 +140,8 @@
       padding: 0 240px;
     }
 
-    @media (max-width: 1100px) {
-      .navbar-inner { padding: 0 80px; }
-      .page         { padding: 0 80px; }
-    }
-
-    @media (max-width: 760px) {
-      .navbar-inner { padding: 0 24px; }
-      .page         { padding: 0 24px; }
-    }
+    @media (max-width: 1100px) { .page { padding: 0 80px; } }
+    @media (max-width: 760px)  { .page { padding: 0 24px; } }
 
     /* ─── HERO ─── */
     .hero {
@@ -102,18 +153,17 @@
       overflow: hidden;
     }
 
-    /* subtle radial gradient background */
-    .hero::before {
-      content: '';
+    /* Hero background — user-uploaded image */
+    .hero-bg {
       position: absolute;
       top: 0; left: 50%;
       transform: translateX(-50%);
       width: 1282px;
       height: 723px;
-      border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(201,152,138,0.18) 0%, rgba(201,152,138,0) 70%);
+      object-fit: cover;
       pointer-events: none;
       z-index: 0;
+      opacity: 0.6;
     }
 
     .hero-text {
@@ -148,7 +198,7 @@
       letter-spacing: -0.02em;
     }
 
-    /* pill/oval portrait */
+    /* pill portrait */
     .hero-photo {
       width: 222px;
       height: 312px;
@@ -162,15 +212,15 @@
       width: 421px;
       height: 749px;
       object-fit: cover;
-      margin-left: calc(50% - 421px/2 + 9.5px);
+      margin-left: calc(50% - 421px / 2 + 9.5px);
       margin-top: -333px;
     }
 
     @media (max-width: 760px) {
-      .hero { flex-direction: column; gap: 40px; padding: 48px 0; }
-      .hero-title { font-size: 32px; }
-      .hero-desc  { font-size: 18px; }
-      .hero-photo { width: 160px; height: 220px; }
+      .hero        { flex-direction: column; gap: 40px; padding: 48px 0; }
+      .hero-title  { font-size: 32px; }
+      .hero-desc   { font-size: 18px; }
+      .hero-photo  { width: 160px; height: 220px; }
       .hero-photo img { width: 300px; height: auto; margin: -60px 0 0 calc(50% - 150px); }
     }
 
@@ -184,16 +234,11 @@
       margin-bottom: 24px;
     }
 
-    /* ─── PROJECTS SECTION ─── */
+    /* ─── PROJECTS ─── */
     .projects { padding: 0 0 80px; }
 
-    .project-tiles {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
+    .project-tiles { display: flex; flex-direction: column; gap: 24px; }
 
-    /* ─── PROJECT TILE ─── */
     .project-tile {
       background: var(--canvas);
       border-radius: 24px;
@@ -245,7 +290,6 @@
       letter-spacing: -0.02em;
     }
 
-    /* metrics row */
     .project-metrics {
       background: var(--bone);
       border-radius: 16px;
@@ -255,12 +299,7 @@
       gap: 16px;
     }
 
-    .project-metric {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
+    .project-metric { flex: 1; display: flex; flex-direction: column; gap: 4px; }
 
     .project-metric-value {
       font-size: 20px;
@@ -281,7 +320,6 @@
       flex-shrink: 0;
     }
 
-    /* placeholder tile for upcoming case studies */
     .project-tile--coming {
       background: var(--white);
       border: 1.5px dashed var(--border);
@@ -291,31 +329,31 @@
     }
 
     .project-tile--coming:hover { opacity: 0.5; }
-
-    .coming-label {
-      font-size: 18px;
-      color: var(--dust);
-      font-weight: 400;
-    }
+    .coming-label { font-size: 18px; color: var(--dust); }
 
     @media (max-width: 760px) {
-      .project-tile { flex-direction: column; gap: 24px; padding: 24px; }
-      .project-thumb { width: 100%; height: 200px; }
+      .project-tile   { flex-direction: column; gap: 24px; padding: 24px; }
+      .project-thumb  { width: 100%; height: 200px; }
       .project-metrics { flex-wrap: wrap; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ─── NAVBAR ─── -->
-  <header class="navbar">
-    <div class="navbar-inner">
+  <!-- ─── NAVBAR (hidden until scroll) ─── -->
+  <header class="navbar" id="navbar">
+    <div class="navbar-bar">
       <a class="navbar-logo" href="index.html">Wen Yin's Portfolio</a>
-      <button class="navbar-burger" aria-label="Open menu">
-        <span></span>
-        <span></span>
-        <span></span>
+      <button class="navbar-burger" id="navOpen" aria-label="Open menu">
+        <span></span><span></span><span></span>
       </button>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-menu-bar">
+        <a class="navbar-logo" href="index.html">Wen Yin's Portfolio</a>
+        <button class="navbar-close-btn" id="navClose" aria-label="Close menu">&#x2715;</button>
+      </div>
+      <a class="navbar-link" href="loans-onboarding.html">Loans Onboarding Revamp</a>
     </div>
   </header>
 
@@ -323,12 +361,15 @@
 
     <!-- ─── HERO ─── -->
     <section class="hero">
+      <!-- Upload your gradient background to images/home/hero-bg.png -->
+      <img class="hero-bg" src="images/home/hero-bg.png" alt="">
       <div class="hero-text">
         <p class="hero-tag">Product design • Fintech</p>
         <h1 class="hero-title">Wen Yin's Portfolio</h1>
         <p class="hero-desc">Enjoy turning complex business challenges into clear, intuitive flows. And sneak in a little magic, with motion, play and tools that make ideas move.</p>
       </div>
       <div class="hero-photo">
+        <!-- Upload your profile photo to images/home/profile.jpg -->
         <img src="images/home/profile.jpg" alt="Wen Yin">
       </div>
     </section>
@@ -338,7 +379,6 @@
       <p class="section-label">The project</p>
       <div class="project-tiles">
 
-        <!-- Loans Onboarding Revamp -->
         <a class="project-tile" href="loans-onboarding.html">
           <div class="project-thumb">
             <img src="images/home/loans-thumb.png" alt="Loans Onboarding Revamp">
@@ -367,7 +407,6 @@
           </div>
         </a>
 
-        <!-- Placeholder: Coming soon -->
         <div class="project-tile project-tile--coming">
           <div class="project-info">
             <p class="coming-label">More case studies coming soon</p>
@@ -378,6 +417,32 @@
     </section>
 
   </div>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    const navOpen = document.getElementById('navOpen');
+    const navClose = document.getElementById('navClose');
+
+    // Show navbar on scroll
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        navbar.classList.add('nav-visible');
+      } else {
+        navbar.classList.remove('nav-visible');
+        navbar.classList.remove('menu-open');
+      }
+    });
+
+    // Open menu
+    navOpen.addEventListener('click', () => {
+      navbar.classList.add('menu-open');
+    });
+
+    // Close menu
+    navClose.addEventListener('click', () => {
+      navbar.classList.remove('menu-open');
+    });
+  </script>
 
 </body>
 </html>

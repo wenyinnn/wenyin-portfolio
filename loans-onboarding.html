@@ -592,18 +592,19 @@
       top: 0;
       z-index: 100;
       background: var(--white);
-      border-bottom: 1px solid var(--border);
-      margin: 0 -240px;
+      /* always visible on case study pages */
+      transition: border-radius 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .navbar-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 240px;
+    .navbar-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 72px;
+      border-bottom: 1px solid var(--border);
+      padding: 0 240px;
+      max-width: 1280px;
+      margin: 0 auto;
     }
 
     .navbar-logo {
@@ -615,14 +616,14 @@
       text-transform: capitalize;
     }
 
-    .navbar-burger {
+    .navbar-burger, .navbar-close-btn {
       background: none;
       border: none;
       cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
       padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .navbar-burger span {
@@ -631,23 +632,74 @@
       height: 2px;
       background: var(--ink);
       border-radius: 2px;
+      margin: 3px 0;
     }
 
-    @media (max-width: 1100px) { .navbar { margin: 0 -80px; } .navbar-inner { padding: 0 80px; } }
-    @media (max-width: 760px)  { .navbar { margin: 0 -24px; } .navbar-inner { padding: 0 24px; } }
+    .navbar-close-btn { font-size: 24px; color: var(--ink); width: 32px; height: 32px; line-height: 1; }
+
+    .navbar-menu {
+      display: none;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 240px 20px;
+    }
+
+    .navbar-menu-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+
+    .navbar-link {
+      display: block;
+      font-size: 18px;
+      color: var(--stone);
+      text-decoration: none;
+      padding: 16px 16px 16px 48px;
+      letter-spacing: -0.02em;
+      transition: color 0.15s;
+    }
+
+    .navbar-link:hover { color: var(--ink); }
+
+    .navbar.menu-open {
+      border-radius: 0 0 40px 40px;
+      box-shadow: 0px 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .navbar.menu-open .navbar-bar  { border-bottom: none; }
+    .navbar.menu-open .navbar-menu { display: block; }
+
+    @media (max-width: 1100px) {
+      .navbar-bar  { padding: 0 80px; }
+      .navbar-menu { padding: 0 80px 20px; }
+    }
+    @media (max-width: 760px) {
+      .navbar-bar  { padding: 0 24px; }
+      .navbar-menu { padding: 0 24px 20px; }
+      .navbar-link { padding-left: 24px; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- ─── NAVBAR ─── -->
-  <header class="navbar">
-    <div class="navbar-inner">
+  <!-- ─── NAVBAR (always visible on case study pages) ─── -->
+  <header class="navbar" id="navbar">
+    <div class="navbar-bar">
       <a class="navbar-logo" href="index.html">Wen Yin's Portfolio</a>
-      <button class="navbar-burger" aria-label="Open menu">
-        <span></span>
-        <span></span>
-        <span></span>
+      <button class="navbar-burger" id="navOpen" aria-label="Open menu">
+        <span></span><span></span><span></span>
       </button>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-menu-bar">
+        <a class="navbar-logo" href="index.html">Wen Yin's Portfolio</a>
+        <button class="navbar-close-btn" id="navClose" aria-label="Close menu">&#x2715;</button>
+      </div>
+      <a class="navbar-link" href="loans-onboarding.html">Loans Onboarding Revamp</a>
     </div>
   </header>
 
@@ -1346,5 +1398,12 @@
     }
   }
 </script>
+  <script>
+    const navbar = document.getElementById('navbar');
+    const navOpen = document.getElementById('navOpen');
+    const navClose = document.getElementById('navClose');
+    navOpen.addEventListener('click', () => navbar.classList.add('menu-open'));
+    navClose.addEventListener('click', () => navbar.classList.remove('menu-open'));
+  </script>
 </body>
 </html>
