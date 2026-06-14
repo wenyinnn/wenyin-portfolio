@@ -568,6 +568,126 @@
     .next-body p  { font-size: 14px; color: var(--stone); line-height: 1.7; }
 
     .intro-text { font-size: 15px; color: var(--stone); line-height: 1.7; margin-bottom: 24px; }
+  /* ─── CSS ANIMATIONS ─── */
+
+    /* Hero phone mockup */
+    .phone-anim {
+      width: 165px;
+      height: 100%;
+      border-radius: 24px;
+      border: 2px solid rgba(255,255,255,0.4);
+      background: #fff;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+
+    .phone-anim-screen {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 24px 16px 16px;
+      opacity: 0;
+      animation: cycleScreen 10s infinite;
+    }
+
+    .phone-anim-screen:nth-child(1) { animation-delay: 0s;    background: #fdf9f7; }
+    .phone-anim-screen:nth-child(2) { animation-delay: 2s;    background: #fdf9f7; }
+    .phone-anim-screen:nth-child(3) { animation-delay: 4s;    background: #fdf9f7; }
+    .phone-anim-screen:nth-child(4) { animation-delay: 6s;    background: #fdf9f7; }
+    .phone-anim-screen:nth-child(5) { animation-delay: 8s;    background: #f5eae5; }
+
+    @keyframes cycleScreen {
+      0%   { opacity: 0; transform: translateY(6px); }
+      5%   { opacity: 1; transform: translateY(0); }
+      18%  { opacity: 1; transform: translateY(0); }
+      23%  { opacity: 0; transform: translateY(-6px); }
+      100% { opacity: 0; }
+    }
+
+    .panim-bar { height: 4px; border-radius: 2px; background: #e8e6e0; margin-bottom: 20px; }
+    .panim-bar-fill { height: 4px; border-radius: 2px; background: #1d9e75; }
+    .panim-label { font-size: 9px; color: #9e9c97; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 8px; }
+    .panim-title { font-size: 13px; font-weight: 600; color: #1a1a18; margin-bottom: 12px; line-height: 1.3; }
+    .panim-body  { font-size: 10px; color: #5f5e5a; line-height: 1.5; margin-bottom: 10px; }
+    .panim-pill  { background: #f5eae5; border-radius: 8px; padding: 8px 10px; font-size: 10px; color: #7a3a2e; margin-bottom: 6px; }
+    .panim-row   { display: flex; align-items: center; gap: 6px; }
+    .panim-circle { width: 28px; height: 28px; border-radius: 50%; background: #edd9d1; flex-shrink: 0; }
+    .panim-circle.green { background: #eef8f4; }
+    .panim-dot-row { display: flex; gap: 4px; margin-bottom: 10px; }
+    .panim-dot { width: 24px; height: 3px; border-radius: 2px; background: #e8e6e0; }
+    .panim-dot.active { background: #1a1a18; width: 32px; }
+    .panim-check { width: 40px; height: 40px; border-radius: 50%; background: #eef8f4; display: flex; align-items: center; justify-content: center; font-size: 18px; margin: 8px auto; }
+    .panim-cta { background: #1a1a18; color: #fff; border-radius: 12px; padding: 10px; font-size: 11px; font-weight: 600; text-align: center; margin-top: auto; }
+
+    /* Inline phone mockup (for phone-grid slots) */
+    .phone-mock {
+      width: 190px;
+      min-height: 410px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: #fdf9f7;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* D3-S1 after: 5-step sequence animation */
+    .d3after-screen {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 14px 14px;
+      opacity: 0;
+      animation: fadeSlide 12.5s infinite;
+    }
+
+    .d3after-screen:nth-child(1) { animation-delay: 0s;  background: #fff; }
+    .d3after-screen:nth-child(2) { animation-delay: 2.5s; background: #fff; }
+    .d3after-screen:nth-child(3) { animation-delay: 5s;  background: #fff; }
+    .d3after-screen:nth-child(4) { animation-delay: 7.5s; background: #fff; }
+    .d3after-screen:nth-child(5) { animation-delay: 10s; background: #fdf9f7; }
+
+    @keyframes fadeSlide {
+      0%   { opacity: 0; transform: translateX(8px); }
+      4%   { opacity: 1; transform: translateX(0); }
+      16%  { opacity: 1; transform: translateX(0); }
+      20%  { opacity: 0; transform: translateX(-8px); }
+      100% { opacity: 0; }
+    }
+
+    /* FSL transition animation */
+    .fsl-screen {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      opacity: 0;
+      animation: fslAnim 6s infinite;
+    }
+
+    .fsl-screen:nth-child(1) { animation-delay: 0s;  background: #fff; }
+    .fsl-screen:nth-child(2) { animation-delay: 3s;  background: #fdf9f7; }
+
+    @keyframes fslAnim {
+      0%   { opacity: 0; transform: translateY(12px); }
+      5%   { opacity: 1; transform: translateY(0); }
+      45%  { opacity: 1; transform: translateY(0); }
+      50%  { opacity: 0; transform: translateY(-4px); }
+      100% { opacity: 0; }
+    }
+
+    .fsl-icon { font-size: 40px; margin-bottom: 12px; }
+    .fsl-title { font-size: 13px; font-weight: 600; color: #1a1a18; text-align: center; margin-bottom: 8px; line-height: 1.3; }
+    .fsl-sub   { font-size: 10px; color: #5f5e5a; text-align: center; line-height: 1.5; }
+    .fsl-badge { background: #f5eae5; border-radius: 20px; padding: 6px 14px; font-size: 10px; color: #7a3a2e; font-weight: 600; margin-top: 12px; }
+    .fsl-amount { font-size: 28px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
+    .fsl-note { font-size: 10px; color: #5f5e5a; text-align: center; }
+
   </style>
 </head>
 <body>
@@ -599,7 +719,52 @@
       <!-- Replace hero-bg.png with your gradient image -->
       <img class="hero-gradient" src="images/loans/hero-bg.png" alt="">
       <div class="hero-phone">
-        <img src="images/loans/hero-phone.png" alt="App screen recording">
+        <div class="phone-anim">
+          <!-- Screen 1: Loan offer -->
+          <div class="phone-anim-screen">
+            <div class="panim-dot-row"><div class="panim-dot active"></div><div class="panim-dot"></div><div class="panim-dot"></div><div class="panim-dot"></div><div class="panim-dot"></div></div>
+            <div class="panim-label">Step 1 of 5</div>
+            <div class="panim-title">Your loan offer</div>
+            <div class="panim-pill">$500 approved</div>
+            <div class="panim-body">Cash to wallet today: $360<br>Credit Reserve: $140</div>
+            <div class="panim-cta">Accept offer</div>
+          </div>
+          <!-- Screen 2: Membership -->
+          <div class="phone-anim-screen">
+            <div class="panim-dot-row"><div class="panim-dot"></div><div class="panim-dot active"></div><div class="panim-dot"></div><div class="panim-dot"></div><div class="panim-dot"></div></div>
+            <div class="panim-label">Step 2 of 5</div>
+            <div class="panim-title">Credit Builder Plus membership</div>
+            <div class="panim-body">$1/month after 30-day free trial. Cancel anytime.</div>
+            <div class="panim-row"><div class="panim-circle green"></div><div style="font-size:10px;color:#1d9e75">RoarMoney pre-selected ✓</div></div>
+            <div class="panim-cta">Continue</div>
+          </div>
+          <!-- Screen 3: Payment frequency -->
+          <div class="phone-anim-screen">
+            <div class="panim-dot-row"><div class="panim-dot"></div><div class="panim-dot"></div><div class="panim-dot active"></div><div class="panim-dot"></div><div class="panim-dot"></div></div>
+            <div class="panim-label">Step 3 of 5</div>
+            <div class="panim-title">Payment schedule</div>
+            <div class="panim-body">We detected your pay cycle:</div>
+            <div class="panim-pill">Bi-weekly · Auto-detected</div>
+            <div class="panim-cta">Looks right</div>
+          </div>
+          <!-- Screen 4: Credit Reserve -->
+          <div class="phone-anim-screen">
+            <div class="panim-dot-row"><div class="panim-dot"></div><div class="panim-dot"></div><div class="panim-dot"></div><div class="panim-dot active"></div><div class="panim-dot"></div></div>
+            <div class="panim-label">Step 4 of 5</div>
+            <div class="panim-title">Building credit &amp; savings</div>
+            <div class="panim-body">$140 held in Credit Reserve — unlocks after full repayment.</div>
+            <div class="panim-row"><div class="panim-circle"></div><div style="font-size:9px;color:#5f5e5a">Wallet $360 today</div></div>
+            <div class="panim-row" style="margin-top:4px"><div class="panim-circle"></div><div style="font-size:9px;color:#5f5e5a">Piggy bank $140 later</div></div>
+            <div class="panim-cta">Got it</div>
+          </div>
+          <!-- Screen 5: Done -->
+          <div class="phone-anim-screen">
+            <div class="panim-check">✓</div>
+            <div class="panim-title" style="text-align:center">You're all set!</div>
+            <div class="panim-body" style="text-align:center">$360 is on its way to your RoarMoney account.</div>
+            <div class="panim-cta">Done</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1039,7 +1204,52 @@
               <span class="phone-label">Before (Static)</span>
             </div>
             <div class="phone-item">
-              <img src="images/loans/d3-s1-after.png" alt="After (animated)">
+              <div class="phone-mock">
+                <!-- Step 1 -->
+                <div class="d3after-screen">
+                  <div class="panim-dot-row"><div class="panim-dot active"></div><div class="panim-dot"></div><div class="panim-dot"></div><div class="panim-dot"></div><div class="panim-dot"></div></div>
+                  <div style="font-size:9px;color:#9e9c97;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Step 1 of 5</div>
+                  <div style="font-size:13px;font-weight:600;color:#1a1a18;margin-bottom:8px">Loan approved 🎉</div>
+                  <div style="font-size:10px;color:#5f5e5a;line-height:1.5">You're approved for a Credit Builder Plus loan.</div>
+                  <div style="background:#f5eae5;border-radius:8px;padding:8px;margin-top:10px;font-size:11px;color:#7a3a2e;font-weight:600">$500 total</div>
+                </div>
+                <!-- Step 2 -->
+                <div class="d3after-screen">
+                  <div class="panim-dot-row"><div class="panim-dot"></div><div class="panim-dot active"></div><div class="panim-dot"></div><div class="panim-dot"></div><div class="panim-dot"></div></div>
+                  <div style="font-size:9px;color:#9e9c97;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Step 2 of 5</div>
+                  <div style="font-size:13px;font-weight:600;color:#1a1a18;margin-bottom:8px">Choosing your plan</div>
+                  <div style="font-size:10px;color:#5f5e5a;line-height:1.5">Credit Builder Plus membership at $1/mo included.</div>
+                </div>
+                <!-- Step 3: Fund split -->
+                <div class="d3after-screen" style="background:#fff">
+                  <div class="panim-dot-row"><div class="panim-dot"></div><div class="panim-dot"></div><div class="panim-dot active"></div><div class="panim-dot"></div><div class="panim-dot"></div></div>
+                  <div style="font-size:9px;color:#9e9c97;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Step 3 of 5</div>
+                  <div style="font-size:13px;font-weight:600;color:#1a1a18;margin-bottom:10px">Here's how your money works</div>
+                  <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
+                    <div style="width:32px;height:32px;border-radius:50%;background:#eef8f4;display:flex;align-items:center;justify-content:center;font-size:14px">👛</div>
+                    <div><div style="font-size:10px;font-weight:600;color:#1a1a18">$360 to your wallet today</div><div style="font-size:9px;color:#5f5e5a">RoarMoney account</div></div>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center">
+                    <div style="width:32px;height:32px;border-radius:50%;background:#f5eae5;display:flex;align-items:center;justify-content:center;font-size:14px">🐷</div>
+                    <div><div style="font-size:10px;font-weight:600;color:#1a1a18">$140 into Credit Reserve</div><div style="font-size:9px;color:#5f5e5a">Unlocks when loan is repaid</div></div>
+                  </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="d3after-screen">
+                  <div class="panim-dot-row"><div class="panim-dot"></div><div class="panim-dot"></div><div class="panim-dot"></div><div class="panim-dot active"></div><div class="panim-dot"></div></div>
+                  <div style="font-size:9px;color:#9e9c97;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Step 4 of 5</div>
+                  <div style="font-size:13px;font-weight:600;color:#1a1a18;margin-bottom:8px">Bi-weekly payments</div>
+                  <div style="font-size:10px;color:#5f5e5a;line-height:1.5">Auto-detected from your linked bank. $42/payment.</div>
+                </div>
+                <!-- Step 5: Unlock -->
+                <div class="d3after-screen" style="background:#fdf9f7">
+                  <div class="panim-dot-row"><div class="panim-dot"></div><div class="panim-dot"></div><div class="panim-dot"></div><div class="panim-dot"></div><div class="panim-dot active"></div></div>
+                  <div style="font-size:9px;color:#9e9c97;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Step 5 of 5</div>
+                  <div style="font-size:36px;text-align:center;margin-bottom:8px">🔓</div>
+                  <div style="font-size:13px;font-weight:600;color:#1a1a18;text-align:center;margin-bottom:6px">$140 unlocks after<br>full repayment</div>
+                  <div style="font-size:10px;color:#1d9e75;text-align:center">Building credit &amp; savings at the same time</div>
+                </div>
+              </div>
               <span class="phone-label">After (animated)</span>
             </div>
           </div>
@@ -1082,7 +1292,29 @@
           <p class="step-text">For Fully Secured Loan users, where the entire loan amount goes into Credit Reserve and they receive $0 cash upfront, the offer screen was the first place they learned this. Seeing "$500" on the eligibility screen and then "$0 transferred today" on the offer screen was the sharpest version of the "where's my money?" complaint. We added a transition animation between these two screens to set the expectation before the details appear.</p>
           <div class="phone-grid">
             <div class="phone-item">
-              <img src="images/loans/d3-s2-transition.png" alt="Transition animation">
+              <div class="phone-mock">
+                <!-- FSL: offer screen -->
+                <div class="fsl-screen" style="background:#fff;justify-content:flex-start;padding-top:32px">
+                  <div style="font-size:9px;color:#9e9c97;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Your offer</div>
+                  <div class="fsl-amount">$500</div>
+                  <div class="fsl-note">Credit Builder Plus Loan</div>
+                  <div style="margin-top:16px;background:#f5f5f3;border-radius:10px;padding:10px;width:100%">
+                    <div style="font-size:9px;color:#5f5e5a;margin-bottom:4px">Cash upfront</div>
+                    <div style="font-size:13px;font-weight:600;color:#1a1a18">$0 transferred today</div>
+                  </div>
+                  <div style="margin-top:8px;background:#f5f5f3;border-radius:10px;padding:10px;width:100%">
+                    <div style="font-size:9px;color:#5f5e5a;margin-bottom:4px">Fully Secured — all funds held</div>
+                    <div style="font-size:13px;font-weight:600;color:#1a1a18">$500 Credit Reserve</div>
+                  </div>
+                </div>
+                <!-- FSL: transition -->
+                <div class="fsl-screen" style="background:#fdf9f7">
+                  <div class="fsl-icon">🐷</div>
+                  <div class="fsl-title">Funds will be available after full loan repayment</div>
+                  <div class="fsl-sub">Your $500 is building your credit score the whole time.</div>
+                  <div class="fsl-badge">12 mo · then unlocks</div>
+                </div>
+              </div>
               <span class="phone-label">Transition animation</span>
             </div>
           </div>
