@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wen Yin's Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --canvas:      #fdf9f7;
+      --white:       #ffffff;
+      --ink:         #1a1a18;
+      --stone:       #5f5e5a;
+      --dust:        #9e9c97;
+      --bone:        #f5eae5;
+      --bone-mid:    #edd9d1;
+      --border:      rgba(26,26,24,0.12);
+      --accent-dark: #7a3a2e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAVBAR ─── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 240px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .navbar-logo {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--accent-dark);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      text-transform: capitalize;
+    }
+
+    .navbar-burger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+
+    .navbar-burger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+    }
+
+    /* ─── PAGE ─── */
+    .page {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 240px;
+    }
+
+    @media (max-width: 1100px) {
+      .navbar-inner { padding: 0 80px; }
+      .page         { padding: 0 80px; }
+    }
+
+    @media (max-width: 760px) {
+      .navbar-inner { padding: 0 24px; }
+      .page         { padding: 0 24px; }
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 80px 0 64px;
+      display: flex;
+      align-items: center;
+      gap: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle radial gradient background */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 1282px;
+      height: 723px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(201,152,138,0.18) 0%, rgba(201,152,138,0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--dust);
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-size: 48px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-desc {
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--stone);
+      line-height: 1.5;
+      letter-spacing: -0.02em;
+    }
+
+    /* pill/oval portrait */
+    .hero-photo {
+      width: 222px;
+      height: 312px;
+      border-radius: 360px;
+      overflow: hidden;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    .hero-photo img {
+      width: 421px;
+      height: 749px;
+      object-fit: cover;
+      margin-left: calc(50% - 421px/2 + 9.5px);
+      margin-top: -333px;
+    }
+
+    @media (max-width: 760px) {
+      .hero { flex-direction: column; gap: 40px; padding: 48px 0; }
+      .hero-title { font-size: 32px; }
+      .hero-desc  { font-size: 18px; }
+      .hero-photo { width: 160px; height: 220px; }
+      .hero-photo img { width: 300px; height: auto; margin: -60px 0 0 calc(50% - 150px); }
+    }
+
+    /* ─── SECTION LABEL ─── */
+    .section-label {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--dust);
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    /* ─── PROJECTS SECTION ─── */
+    .projects { padding: 0 0 80px; }
+
+    .project-tiles {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* ─── PROJECT TILE ─── */
+    .project-tile {
+      background: var(--canvas);
+      border-radius: 24px;
+      padding: 40px;
+      display: flex;
+      gap: 48px;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.15s;
+    }
+
+    .project-tile:hover { opacity: 0.85; }
+
+    .project-thumb {
+      width: 181px;
+      height: 261px;
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .project-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .project-text { display: flex; flex-direction: column; gap: 16px; }
+
+    .project-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .project-desc {
+      font-size: 16px;
+      color: var(--stone);
+      line-height: 1.6;
+      letter-spacing: -0.02em;
+    }
+
+    /* metrics row */
+    .project-metrics {
+      background: var(--bone);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .project-metric {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .project-metric-value {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--accent-dark);
+    }
+
+    .project-metric-label {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--accent-dark);
+    }
+
+    .project-metric-divider {
+      width: 1px;
+      height: 48px;
+      background: var(--bone-mid);
+      flex-shrink: 0;
+    }
+
+    /* placeholder tile for upcoming case studies */
+    .project-tile--coming {
+      background: var(--white);
+      border: 1.5px dashed var(--border);
+      opacity: 0.5;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .project-tile--coming:hover { opacity: 0.5; }
+
+    .coming-label {
+      font-size: 18px;
+      color: var(--dust);
+      font-weight: 400;
+    }
+
+    @media (max-width: 760px) {
+      .project-tile { flex-direction: column; gap: 24px; padding: 24px; }
+      .project-thumb { width: 100%; height: 200px; }
+      .project-metrics { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAVBAR ─── -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a class="navbar-logo" href="index.html">Wen Yin's Portfolio</a>
+      <button class="navbar-burger" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="page">
+
+    <!-- ─── HERO ─── -->
+    <section class="hero">
+      <div class="hero-text">
+        <p class="hero-tag">Product design • Fintech</p>
+        <h1 class="hero-title">Wen Yin's Portfolio</h1>
+        <p class="hero-desc">Enjoy turning complex business challenges into clear, intuitive flows. And sneak in a little magic, with motion, play and tools that make ideas move.</p>
+      </div>
+      <div class="hero-photo">
+        <img src="images/home/profile.jpg" alt="Wen Yin">
+      </div>
+    </section>
+
+    <!-- ─── PROJECTS ─── -->
+    <section class="projects">
+      <p class="section-label">The project</p>
+      <div class="project-tiles">
+
+        <!-- Loans Onboarding Revamp -->
+        <a class="project-tile" href="loans-onboarding.html">
+          <div class="project-thumb">
+            <img src="images/home/loans-thumb.png" alt="Loans Onboarding Revamp">
+          </div>
+          <div class="project-info">
+            <div class="project-text">
+              <h2 class="project-title">Loans Onboarding Revamp</h2>
+              <p class="project-desc">End-to-end redesign of the Credit Builder Loan onboarding to increase loan takeup for a US-based fintech.</p>
+            </div>
+            <div class="project-metrics">
+              <div class="project-metric">
+                <span class="project-metric-value">+1.4%</span>
+                <span class="project-metric-label">Loan takeup lift</span>
+              </div>
+              <div class="project-metric-divider"></div>
+              <div class="project-metric">
+                <span class="project-metric-value">-5%</span>
+                <span class="project-metric-label">drop-off</span>
+              </div>
+              <div class="project-metric-divider"></div>
+              <div class="project-metric">
+                <span class="project-metric-value">~113k</span>
+                <span class="project-metric-label">sample size</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Placeholder: Coming soon -->
+        <div class="project-tile project-tile--coming">
+          <div class="project-info">
+            <p class="coming-label">More case studies coming soon</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
