@@ -512,33 +512,43 @@
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 0 24px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
-      list-style: none;
+      gap: 20px;
     }
 
     .timeline-phase {
-      padding: 24px 0;
-      border-bottom: 1px solid var(--border);
-      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
-
-    .timeline-phase:last-child { border-bottom: none; }
 
     .timeline-phase h4 {
       font-size: 16px;
       font-weight: 600;
       color: var(--ink);
-      margin-bottom: 10px;
       line-height: 1.4;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .timeline-phase h4::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ink);
+      flex-shrink: 0;
+      margin-top: 6px;
     }
 
     .timeline-phase p {
       font-size: 14px;
       color: var(--stone);
       line-height: 1.75;
-      padding-left: 24px;
+      padding-left: 17px;
     }
 
     /* Constraint cards — red bar */
