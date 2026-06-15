@@ -28,26 +28,18 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ─── NAVBAR (shared) ─── */
+    /* ─── NAVBAR ─── */
     .navbar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: var(--white);
-      /* homepage: hidden until scroll */
-      transform: translateY(-100%);
-      transition: transform 0.3s ease, border-radius 0.2s ease, box-shadow 0.2s ease;
+      transition: border-radius 0.2s ease, box-shadow 0.2s ease;
     }
-
-    .navbar.nav-visible { transform: translateY(0); }
 
     .navbar-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 240px;
       height: 72px;
       border-bottom: 1px solid var(--border);
+      padding: 0 240px;
     }
 
     .navbar-logo {
@@ -59,81 +51,73 @@
       text-transform: capitalize;
     }
 
-    .navbar-burger, .navbar-close-btn {
+    .navbar-toggle {
       background: none;
       border: none;
       cursor: pointer;
-      padding: 4px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 5px;
+      width: 32px;
+      height: 32px;
+      padding: 0;
     }
 
-    .navbar-burger span {
+    .burger-line {
       display: block;
       width: 22px;
       height: 2px;
       background: var(--ink);
       border-radius: 2px;
-      margin: 3px 0;
     }
 
-    .navbar-close-btn {
-      font-size: 24px;
+    .close-icon {
+      display: none;
+      font-size: 20px;
       color: var(--ink);
-      width: 32px;
-      height: 32px;
       line-height: 1;
     }
 
-    /* Expanded menu panel */
+    .navbar.menu-open .burger-line { display: none; }
+    .navbar.menu-open .close-icon  { display: block; }
+
     .navbar-menu {
       display: none;
-      padding: 0 240px 20px;
-    }
-
-    .navbar-menu-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 72px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 8px;
+      padding: 8px 0 20px;
     }
 
     .navbar-link {
       display: block;
       font-size: 18px;
-      font-weight: 400;
       color: var(--stone);
       text-decoration: none;
-      padding: 16px 16px 16px 48px;
+      padding: 16px 240px;
       letter-spacing: -0.02em;
       transition: color 0.15s;
     }
 
     .navbar-link:hover { color: var(--ink); }
 
-    /* open state */
     .navbar.menu-open {
       border-radius: 0 0 40px 40px;
       box-shadow: 0px 2px 10px rgba(0,0,0,0.05);
     }
 
-    .navbar.menu-open .navbar-bar { border-bottom: none; }
+    .navbar.menu-open .navbar-bar  { border-bottom: 1px solid var(--border); }
     .navbar.menu-open .navbar-menu { display: block; }
 
     @media (max-width: 1100px) {
       .navbar-bar  { padding: 0 80px; }
-      .navbar-menu { padding: 0 80px 20px; }
+      .navbar-link { padding-left: 80px; padding-right: 80px; }
     }
     @media (max-width: 760px) {
       .navbar-bar  { padding: 0 24px; }
-      .navbar-menu { padding: 0 24px 20px; }
-      .navbar-link { padding-left: 24px; }
+      .navbar-link { padding-left: 24px; padding-right: 24px; }
     }
 
-    /* ─── PAGE ─── */
+        /* ─── PAGE ─── */
     .page {
       max-width: 1280px;
       margin: 0 auto;
@@ -340,19 +324,17 @@
 </head>
 <body>
 
-  <!-- ─── NAVBAR (hidden until scroll) ─── -->
   <header class="navbar" id="navbar">
     <div class="navbar-bar">
       <a class="navbar-logo" href="index.html">Wen Yin's Portfolio</a>
-      <button class="navbar-burger" id="navOpen" aria-label="Open menu">
-        <span></span><span></span><span></span>
+      <button class="navbar-toggle" id="navToggle" aria-label="Toggle menu">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="close-icon">&#x2715;</span>
       </button>
     </div>
     <div class="navbar-menu">
-      <div class="navbar-menu-bar">
-        <a class="navbar-logo" href="index.html">Wen Yin's Portfolio</a>
-        <button class="navbar-close-btn" id="navClose" aria-label="Close menu">&#x2715;</button>
-      </div>
       <a class="navbar-link" href="loans-onboarding.html">Loans Onboarding Revamp</a>
     </div>
   </header>
@@ -420,29 +402,12 @@
 
   <script>
     const navbar = document.getElementById('navbar');
-    const navOpen = document.getElementById('navOpen');
-    const navClose = document.getElementById('navClose');
-
-    // Show navbar on scroll
+    const navToggle = document.getElementById('navToggle');
+    navToggle.addEventListener('click', () => navbar.classList.toggle('menu-open'));
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) {
-        navbar.classList.add('nav-visible');
-      } else {
-        navbar.classList.remove('nav-visible');
-        navbar.classList.remove('menu-open');
-      }
-    });
-
-    // Open menu
-    navOpen.addEventListener('click', () => {
-      navbar.classList.add('menu-open');
-    });
-
-    // Close menu
-    navClose.addEventListener('click', () => {
-      navbar.classList.remove('menu-open');
+      if (window.scrollY > 20) { navbar.classList.add('nav-visible'); }
+      else { navbar.classList.remove('nav-visible'); navbar.classList.remove('menu-open'); }
     });
   </script>
-
 </body>
 </html>
