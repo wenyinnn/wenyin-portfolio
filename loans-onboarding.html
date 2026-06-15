@@ -659,7 +659,7 @@
       font-size: 18px;
       color: var(--stone);
       text-decoration: none;
-      padding: 16px 240px;
+      padding: 16px 240px 16px calc(240px + 48px);
       letter-spacing: -0.02em;
       transition: color 0.15s;
     }
@@ -671,16 +671,16 @@
       box-shadow: 0px 2px 10px rgba(0,0,0,0.05);
     }
 
-    .navbar.menu-open .navbar-bar  { border-bottom: 1px solid var(--border); }
+    .navbar.menu-open .navbar-bar  { border-bottom: none; }
     .navbar.menu-open .navbar-menu { display: block; }
 
     @media (max-width: 1100px) {
       .navbar-bar  { padding: 0 80px; }
-      .navbar-link { padding-left: 80px; padding-right: 80px; }
+      .navbar-link { padding: 16px 80px 16px calc(80px + 48px); }
     }
     @media (max-width: 760px) {
       .navbar-bar  { padding: 0 24px; }
-      .navbar-link { padding-left: 24px; padding-right: 24px; }
+      .navbar-link { padding: 16px 24px 16px calc(24px + 48px); }
     }
   </style>
 </head>
