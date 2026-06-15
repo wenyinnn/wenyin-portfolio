@@ -48,8 +48,8 @@
       padding: 0;
       display: flex;
       align-items: center;
+      gap: 88px;
       position: relative;
-      min-height: 335px;
       margin-bottom: 56px;
     }
 
@@ -57,7 +57,13 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      z-index: 1;
+      gap: 40px;
+    }
+
+    .hero-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
 
     .hero-title {
@@ -66,7 +72,6 @@
       line-height: normal;
       letter-spacing: -0.02em;
       color: var(--ink);
-      margin-bottom: 24px;
     }
 
     .hero-desc {
@@ -75,7 +80,6 @@
       color: var(--stone);
       line-height: normal;
       letter-spacing: -0.4px;
-      margin-bottom: 31px;
     }
 
     /* Metrics — pink frame, dark red text */
@@ -86,7 +90,6 @@
       background: var(--bone);
       border-radius: 16px;
       padding: 24px 32px;
-      align-self: flex-start;
     }
 
     .metric {
@@ -104,7 +107,7 @@
     }
 
     .metric-label {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 500;
       color: var(--accent-dark);
       line-height: normal;
@@ -118,49 +121,47 @@
     }
 
     .hero-visual {
-      position: absolute;
-      right: 0;
-      top: 0;
-      height: 100%;
-      width: 300px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
+      position: relative;
+      width: 164px;
+      height: 335px;
+      flex-shrink: 0;
     }
 
     /* hero-gradient is now an img the user will supply */
     .hero-gradient {
       position: absolute;
-      right: 60px;
-      top: 0;
-      width: 280px;
-      height: 280px;
+      right: -77px;
+      top: 4px;
+      width: 323px;
+      height: 324px;
       object-fit: contain;
       z-index: 0;
       border-radius: 0;
+      pointer-events: none;
     }
 
     .hero-phone {
       position: relative;
       z-index: 1;
-      width: 165px;
+      width: 164px;
+      height: 335px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .hero-phone img {
-      width: 165px;
+      width: 149px;
       height: auto;
       object-fit: contain;
-      border-radius: 0;
+      border-radius: 20px;
       border: none;
     }
 
     @media (max-width: 760px) {
-      .hero { flex-direction: column; min-height: auto; margin-bottom: 40px; }
-      .hero-visual { position: static; width: 100%; height: auto; justify-content: center; margin-top: 24px; }
-      .hero-phone { width: 120px; }
+      .hero { flex-direction: column; gap: 40px; margin-bottom: 40px; }
+      .hero-visual { width: 120px; height: auto; }
+      .hero-phone { width: 120px; height: auto; }
       .hero-phone img { width: 120px; }
       .hero-title { font-size: 32px; }
       .hero-metrics { flex-wrap: wrap; }
@@ -704,8 +705,10 @@
   <!-- ─── HERO ─── -->
   <section class="hero">
     <div class="hero-left">
-      <h1 class="hero-title">Loans Onboarding<br>Revamp</h1>
-      <p class="hero-desc">End-to-end redesign of the Credit Builder Loan onboarding to increase loan takeup for a US-based fintech.</p>
+      <div class="hero-title-group">
+        <h1 class="hero-title">Loans Onboarding<br>Revamp</h1>
+        <p class="hero-desc">End-to-end redesign of the Credit Builder Loan onboarding to increase loan takeup for a US-based fintech.</p>
+      </div>
       <div class="hero-metrics">
         <div class="metric">
           <span class="metric-value">+1.4%</span>
