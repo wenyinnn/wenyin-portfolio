@@ -356,13 +356,40 @@
       margin-bottom: 24px;
     }
 
-    .canvas-frame-title {
+    .canvas-frame-header {
+      padding: 16px 0;
+      text-align: center;
+    }
+
+    .canvas-frame-counter {
       font-size: 13px;
-      font-weight: 500;
       color: var(--stone);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-bottom: 20px;
+      margin-bottom: 2px;
+    }
+
+    .canvas-frame-title-text {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .canvas-frame-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 0 24px;
+    }
+
+    .canvas-frame-body-text {
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.75;
+      margin-bottom: 48px;
+    }
+
+    .canvas-frame-body-text ul {
+      list-style: disc;
+      padding-left: 20px;
+      margin-top: 0;
     }
 
     /* Before/After side-by-side */
@@ -460,7 +487,7 @@
     .statement-text { font-size: 15px; color: var(--ink); line-height: 1.65; }
 
     /* Numbered insights */
-    .insights { display: flex; flex-direction: column; gap: 28px; margin-top: 24px; }
+    .insights { display: flex; flex-direction: column; gap: 32px; margin-top: 32px; }
 
     .insight h5 { font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 6px; line-height: 1.4; }
     .insight p  { font-size: 14px; color: var(--stone); line-height: 1.7; }
@@ -519,24 +546,30 @@
       margin-bottom: 16px;
     }
 
-    .impl-list { display: flex; flex-direction: column; gap: 12px; }
+    .impl-list { display: flex; flex-direction: column; gap: 16px; }
 
-    .impl-item {
+    .impl-item { display: flex; flex-direction: column; gap: 8px; }
+
+    .impl-item-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--ink);
       display: flex;
       align-items: flex-start;
-      gap: 10px;
-      font-size: 15px;
-      color: var(--stone);
-      line-height: 1.6;
+      gap: 8px;
     }
 
-    .impl-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--stone);
+    .impl-item-title::before {
+      content: '•';
+      color: var(--ink);
       flex-shrink: 0;
-      margin-top: 9px;
+    }
+
+    .impl-item-desc {
+      font-size: 14px;
+      color: var(--stone);
+      line-height: 1.75;
+      padding-left: 16px;
     }
 
     /* What's next */
@@ -551,9 +584,9 @@
 
     .next-bar { width: 8px; background: var(--blue); flex-shrink: 0; }
 
-    .next-body { padding: 24px; display: flex; flex-direction: column; gap: 8px; }
-    .next-body h4 { font-size: 16px; font-weight: 500; color: var(--ink); }
-    .next-body p  { font-size: 14px; color: var(--stone); line-height: 1.7; }
+    .next-body { padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+    .next-body h4 { font-size: 18px; font-weight: 500; color: var(--ink); }
+    .next-body p  { font-size: 16px; color: var(--stone); line-height: 1.7; }
 
     .intro-text { font-size: 15px; color: var(--stone); line-height: 1.7; margin-bottom: 24px; }
 
@@ -716,8 +749,7 @@
     <!-- HOW THE PROGRAM WORKS -->
     <div class="overview-section">
       <p class="section-label">How the Program Works</p>
-      <p class="overview-body">MoneyLion's Lion's Share is a monthly rebate program where members earn cashback based on their engagement. The more you use the app, the higher your tier and the bigger your reward.</p>
-      <p class="overview-body">Members earn their rebate by:</p>
+      <p class="overview-lead">Lion's Share Loyalty Program is a monthly rebate program tied to our membership subscription. Members can earn back up to $19.99, their full membership fee, by completing two simple tasks each month:</p>
       <div class="bullet-list">
         <div class="bullet-item"><span class="bullet-dot"></span>Making purchases with RoarMoney</div>
         <div class="bullet-item"><span class="bullet-dot"></span>Logging into the app daily</div>
@@ -745,12 +777,12 @@
     <!-- THE PROBLEM -->
     <div class="overview-section">
       <p class="section-label">The Problem</p>
-      <p class="overview-lead">Despite being a genuine benefit, the program had no dedicated experience. Cashback was buried in transaction history and members had no way to track their progress or understand what tier they were on.</p>
+      <p class="overview-lead">Despite the program existing for years, there was no dedicated experience for it at all. Cashback was deposited straight into the users' Rewards History, with no explanation of why they received that amount or what they'd need to do differently next month.</p>
       <div class="card-problem">
         <div class="card-problem-bar"></div>
         <div class="card-problem-body">
           <h4>An incentive program nobody could see</h4>
-          <p>Without visibility into progress or rewards, members had no reason to change their behaviour. The program existed, but it wasn't driving the engagement it was designed for.</p>
+          <p>The reward arrived with zero context — no tier name, no breakdown of what was completed, no sense of whether $5 was a good or bad result. Sitting alongside unrelated cashback transactions, it read as just another small deposit rather than the outcome of a program designed to motivate behaviour.</p>
         </div>
       </div>
     </div>
@@ -782,41 +814,51 @@
     <div class="decision-block">
       <p class="decision-number">Decision 1: From Buried to Visible</p>
       <h2 class="decision-heading">From a buried line item to a live progress widget</h2>
-      <p class="decision-desc">The original experience hid cashback inside transaction history with no way to see tier status or remaining progress. The opportunity was clear: surface it where members already look, and make it feel alive.</p>
+      <p class="decision-desc">With no existing UI to build on, the visual direction drew from how games communicate leveling up, clear tiers that read as milestones, visual feedback when progress is made, and a sense of forward momentum rather than a static checklist.</p>
 
       <div class="canvas-frame">
-        <p class="canvas-frame-title">Before vs After — Progress widget</p>
+        <div class="canvas-frame-header">
+          <div class="canvas-frame-counter">Before vs After</div>
+          <div class="canvas-frame-title-text">Progress widget</div>
+        </div>
+        <div class="canvas-frame-divider"></div>
+        <p class="canvas-frame-body-text">The widget needed to make three things obvious at a glance:
+          <ul>
+            <li>Which tier the user is currently in</li>
+            <li>What they've already done</li>
+            <li>What's left to do before the month ends</li>
+          </ul>
+        </p>
         <div class="ba-grid">
           <div class="ba-item">
             <img src="images/lions/d1-before.png" alt="Before: buried rewards history">
-            <span class="ba-label">Before — buried in rewards history</span>
+            <span class="ba-label">Before: buried in Rewards history</span>
           </div>
           <div class="ba-item">
             <img class="gif-img" src="images/lions/d1-after.gif" alt="After: dedicated widget">
-            <span class="ba-label">After — dedicated progress widget</span>
+            <span class="ba-label">After: dedicated progress widget</span>
           </div>
         </div>
         <div class="statement-card">
           <div class="statement-bar blue"></div>
           <div class="statement-body">
             <span class="statement-type">Improvement</span>
-            <p class="statement-text">The widget gives members a persistent, at-a-glance view of their tier progress — transforming a passive benefit into an active motivation loop.</p>
+            <p class="statement-text">Progress is shown as a tier path with checkpoints already passed, the users see both how far they've come and what's directly ahead, not just an abstract dollar amount. The gift box motif reframes cashback as something earned and unwrapped, not just deposited.</p>
           </div>
         </div>
-      </div>
-
-      <div class="insights">
-        <div class="insight">
-          <h5>1. Progress at a glance</h5>
-          <p>Members can now see exactly where they stand in their current tier cycle without navigating away from their main dashboard. The visual bar makes progress feel tangible and close.</p>
-        </div>
-        <div class="insight">
-          <h5>2. A moment of delight</h5>
-          <p>Reaching a new tier triggers an animation, turning a routine financial milestone into a rewarding moment. Small celebrations reinforce the behaviour we want to encourage.</p>
-        </div>
-        <div class="insight">
-          <h5>3. Refresh date keeps urgency real</h5>
-          <p>Showing the cycle reset date creates gentle time pressure, giving members a reason to act before progress resets rather than treating the program as a passive background benefit.</p>
+        <div class="insights">
+          <div class="insight">
+            <h5>1. Progress at a glance (what's done, what's next, and how much they'll earn)</h5>
+            <p>Users can see exactly where they stand in real time: tasks completed, current tier, and the cashback amount they're on track to receive by end of month. Tapping into the next tier is always visible, removing any guesswork about what they need to do to earn more.</p>
+          </div>
+          <div class="insight">
+            <h5>2. A moment of delight when a tier is achieved</h5>
+            <p>When users reach a new tier, the gift box animates, unwrapping to celebrate the achievement. A small but intentional moment that makes progress feel rewarding rather than transactional, consistent with the gamified direction of the whole widget.</p>
+          </div>
+          <div class="insight">
+            <h5>3. Refresh date keeps urgency real</h5>
+            <p>The countdown to the next cycle reset (Refreshes in X days) tells users exactly how much time they have left to complete their tasks. It creates natural urgency without being pushy, users who are close to the next tier know when they need to act.</p>
+          </div>
         </div>
       </div>
     </div><!-- /decision 1 -->
@@ -825,45 +867,49 @@
     <div class="decision-block">
       <p class="decision-number">Decision 2: Edge Cases</p>
       <h2 class="decision-heading">The widget had to communicate more than progress</h2>
-      <p class="decision-desc">Not every member is actively progressing. Some are close to achieving their tier, others haven't engaged at all. The widget needed to handle each state with clarity, not just the happy path.</p>
+      <p class="decision-desc">Beyond the four tiers, the widget needed to handle edge cases — like a suspended Credit Builder Plus membership, where Lion's Share benefits pause too.</p>
 
       <div class="canvas-frame">
-        <p class="canvas-frame-title">Edge cases — Progress widget</p>
+        <div class="canvas-frame-header">
+          <div class="canvas-frame-counter">Edge cases</div>
+          <div class="canvas-frame-title-text">Progress widget</div>
+        </div>
+        <div class="canvas-frame-divider"></div>
+        <p class="canvas-frame-body-text">Designing for the happy path is straightforward. The harder work was making sure every other state, achieving a tier, reaching Platinum, or having a suspended membership, communicated the right thing clearly and didn't leave users confused about where they stood.</p>
         <div class="ec-grid">
           <div class="ec-item">
             <img class="gif-img" src="images/lions/d2-active.gif" alt="Active state">
-            <span class="ec-label">Active</span>
+            <span class="ec-label">Active state</span>
           </div>
           <div class="ec-item">
             <img class="gif-img" src="images/lions/d2-achieving.gif" alt="Achieving state">
-            <span class="ec-label">Achieving</span>
+            <span class="ec-label">Achieving state</span>
           </div>
           <div class="ec-item">
             <img class="gif-img" src="images/lions/d2-inactive.gif" alt="Inactive state">
-            <span class="ec-label">Inactive</span>
+            <span class="ec-label">Inactive state</span>
           </div>
         </div>
         <div class="statement-card">
           <div class="statement-bar blue"></div>
           <div class="statement-body">
             <span class="statement-type">Improvement</span>
-            <p class="statement-text">Each state uses distinct visual language so members immediately understand their situation and what action, if any, is available to them.</p>
+            <p class="statement-text">The widget needed to work correctly across every possible membership state, not just the happy path of active progress. Each state communicates a different message to the user, from encouragement to pause to celebration.</p>
           </div>
         </div>
-      </div>
-
-      <div class="insights">
-        <div class="insight">
-          <h5>1. Active state sets the baseline expectation</h5>
-          <p>Members who are on track see their progress bar filling up with a clear indication of where they sit within the tier. The focus is on momentum, not instruction.</p>
-        </div>
-        <div class="insight">
-          <h5>2. Achieving state nudges at the right moment</h5>
-          <p>When a member is close to the next tier, the widget surfaces a contextual prompt to close the gap. Timing this message when it's still achievable makes it motivating rather than frustrating.</p>
-        </div>
-        <div class="insight">
-          <h5>3. Inactive state explains without shaming</h5>
-          <p>Members who haven't earned anything this cycle see a neutral, informative state rather than a visually empty or broken-looking widget. The design preserves trust while gently re-engaging them.</p>
+        <div class="insights">
+          <div class="insight">
+            <h5>1. Active states reflect real progress, not just position</h5>
+            <p>A user at Silver with 5/10 purchases sees something different from a user at Silver with 10/10, the state is specific to where they actually are, not just which tier they've reached.</p>
+          </div>
+          <div class="insight">
+            <h5>2. Suspended state protects user trust</h5>
+            <p>Rather than silently showing zero progress, the suspended state tells users explicitly why the widget is inactive, preventing confusion about whether their progress has been lost.</p>
+          </div>
+          <div class="insight">
+            <h5>3. Achieving state creates a motivating moment</h5>
+            <p>The closest thing to a push notification without being one, surfacing when a user is nearly at the next tier, right when a last-minute action is most likely.</p>
+          </div>
         </div>
       </div>
     </div><!-- /decision 2 -->
@@ -909,19 +955,19 @@
     <div class="process-section">
       <h3>Implementation</h3>
       <div class="impl-card">
-        <h4>Built with Rive State Machine</h4>
+        <h4>Build with Rive State Machine</h4>
         <div class="impl-list">
           <div class="impl-item">
-            <span class="impl-dot"></span>
-            The progress animation and tier transition moments were built using Rive, enabling smooth, interactive state-driven motion without heavy video assets.
+            <p class="impl-item-title">No precedent to follow</p>
+            <p class="impl-item-desc">This was the first State Machine implementation at MoneyLion. There was no internal playbook, the approach to structuring states and engineer-controlled inputs was worked out collaboratively, in real time, with the frontend engineer.</p>
           </div>
           <div class="impl-item">
-            <span class="impl-dot"></span>
-            State machines allowed the widget to respond to real membership data dynamically, switching between active, achieving, and inactive states at runtime.
+            <p class="impl-item-title">Engineer-controlled inputs kept the system flexible</p>
+            <p class="impl-item-desc">Rather than triggering animations from hardcoded states, the state machine exposes inputs engineers can drive directly from live data (tier, progress percentage, and suspended status) all feed in without needing new animation assets per scenario.</p>
           </div>
           <div class="impl-item">
-            <span class="impl-dot"></span>
-            The engineering handoff included annotated state diagrams to ensure the Rive logic translated accurately into the production app.
+            <p class="impl-item-title">Iteration required real back-and-forth</p>
+            <p class="impl-item-desc">Without a reference point, building this involved genuine trial and error with engineering, testing what was technically feasible, what needed more research, and how to structure states so they'd integrate cleanly into the existing codebase.</p>
           </div>
         </div>
       </div>
@@ -930,11 +976,12 @@
     <!-- WHAT'S NEXT -->
     <div class="process-section">
       <h3>What's Next</h3>
-      <p class="intro-text">The widget established visibility for an existing program. The next step is making sure more members know it exists in the first place.</p>
+      <p class="intro-text">Even with the refinements shipped, there's room to go further. These are the areas actively being explored.</p>
       <div class="next-card">
         <div class="next-bar"></div>
         <div class="next-body">
           <h4>Increase awareness of the program through a stronger in-app and marketing push</h4>
+          <p>The engagement lift from the widget proves the program works when users can see it. The next step is making sure more users find it in the first place, through better in-app placement and targeted outreach to members who are enrolled but haven't yet participated.</p>
         </div>
       </div>
     </div>
