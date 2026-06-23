@@ -217,7 +217,7 @@
       font-weight: 400;
       color: var(--ink);
       line-height: 25px;
-      margin-bottom: 24px;
+      margin-bottom: 8px;
     }
 
     .overview-body {
@@ -277,7 +277,7 @@
       align-items: flex-start;
       gap: 10px;
       font-size: 16px;
-      color: var(--stone);
+      color: var(--ink);
       line-height: 1.6;
     }
 
@@ -348,7 +348,7 @@
     .decision-heading { font-size: 22px; font-weight: 600; color: var(--ink); margin-bottom: 8px; line-height: 1.3; }
     .decision-desc    { font-size: 16px; color: var(--ink); line-height: 25px; margin-bottom: 24px; }
 
-    /* Before/After canvas frame */
+    /* Before/After canvas frame — matches step-card style */
     .canvas-frame {
       background: var(--canvas);
       border-radius: 16px;
@@ -356,9 +356,16 @@
       margin-bottom: 24px;
     }
 
+    .canvas-frame-body-text,
+    .ba-grid,
+    .ec-grid {
+      margin-bottom: 40px;
+    }
+
     .canvas-frame-header {
       padding: 16px 0;
       text-align: center;
+      margin-bottom: 20px;
     }
 
     .canvas-frame-counter {
