@@ -693,6 +693,34 @@
       .navbar-bar  { padding: 0 24px; }
       .navbar-link { padding: 16px 24px 16px calc(24px + 48px); }
     }
+
+    /* ─── TAB FOOTER NAV ─── */
+    .tab-footer-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      margin-top: 48px;
+    }
+    .tab-footer-nav--next-only { justify-content: flex-end; }
+    .tab-footer-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+      background: var(--canvas);
+      border: none;
+      border-radius: 100px;
+      padding: 12px 24px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      letter-spacing: -0.02em;
+    }
+    .tab-footer-btn:hover { background: var(--bone); }
   </style>
 </head>
 <body>
@@ -810,6 +838,9 @@
       </div>
     </div>
 
+    <div class="tab-footer-nav tab-footer-nav--next-only">
+      <button class="tab-footer-btn" onclick="goToTab('tab-decisions')">Design decisions →</button>
+    </div>
   </div><!-- /tab-overview -->
 
 
@@ -920,6 +951,10 @@
       </div><!-- /canvas-frame -->
     </div><!-- /decision 2 -->
 
+    <div class="tab-footer-nav">
+      <button class="tab-footer-btn" onclick="goToTab('tab-overview')">← Overview</button>
+      <button class="tab-footer-btn" onclick="goToTab('tab-process')">Process →</button>
+    </div>
   </div><!-- /tab-decisions -->
 
 
@@ -992,6 +1027,9 @@
       </div>
     </div>
 
+    <div class="tab-footer-nav">
+      <button class="tab-footer-btn" onclick="goToTab('tab-decisions')">← Design decisions</button>
+    </div>
   </div><!-- /tab-process -->
 
 </div><!-- /page -->
@@ -1008,8 +1046,23 @@
         chip.classList.add('active');
         chip.setAttribute('aria-selected','true');
         document.getElementById(chip.dataset.target).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
+
+    function goToTab(targetId) {
+      document.querySelectorAll('.tab-chip').forEach(c => {
+        c.classList.remove('active');
+        c.setAttribute('aria-selected', 'false');
+        if (c.getAttribute('data-target') === targetId) {
+          c.classList.add('active');
+          c.setAttribute('aria-selected', 'true');
+        }
+      });
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(targetId).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   </script>
 </body>
 </html>
