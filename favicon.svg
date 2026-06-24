@@ -8,14 +8,14 @@
       }
     </style>
   </defs>
-  <rect width="32" height="32" rx="8" fill="#7a3a2e"/>
+  <rect width="32" height="32" rx="8" fill="#f5eae5"/>
   <text
     x="16"
     y="22"
     font-family="DM Sans, sans-serif"
     font-size="13"
     font-weight="700"
-    fill="#f5eae5"
+    fill="#7a3a2e"
     text-anchor="middle"
     letter-spacing="0.5"
   >WY</text>
