@@ -1476,9 +1476,15 @@
       this.classList.add('active');
       this.setAttribute('aria-selected', 'true');
       document.getElementById(target).classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollToTabNav();
     });
   });
+
+  function scrollToTabNav() {
+    var nav = document.querySelector('.tab-nav');
+    var offset = nav.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top: offset, behavior: 'smooth' });
+  }
 
   // ─── Footer tab navigation ───────────────────────────────────────
   function goToTab(targetId) {
@@ -1494,7 +1500,7 @@
       t.classList.remove('active');
     });
     document.getElementById(targetId).classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToTabNav();
   }
 
   // ─── Step carousel ───────────────────────────────────────────────

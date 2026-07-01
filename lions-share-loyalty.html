@@ -1047,9 +1047,15 @@
         chip.classList.add('active');
         chip.setAttribute('aria-selected','true');
         document.getElementById(chip.dataset.target).classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        scrollToTabNav();
       });
     });
+
+    function scrollToTabNav() {
+      var nav = document.querySelector('.tab-nav');
+      var offset = nav.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: offset, behavior: 'smooth' });
+    }
 
     function goToTab(targetId) {
       document.querySelectorAll('.tab-chip').forEach(c => {
@@ -1062,7 +1068,7 @@
       });
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
       document.getElementById(targetId).classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollToTabNav();
     }
   </script>
 </body>
