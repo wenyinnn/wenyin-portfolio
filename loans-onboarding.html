@@ -715,27 +715,52 @@
       align-items: center;
       justify-content: space-between;
       border-top: 1px solid var(--border);
-      padding-top: 64px;
-      margin-top: 64px;
+      padding-top: 32px;
+      margin-top: 48px;
     }
-    .tab-footer-nav--next-only { justify-content: flex-end; }
-    .tab-footer-btn {
-      display: inline-flex;
+    .tfn-prev, .tfn-next {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      cursor: pointer;
+      font-size: 18px;
+      color: var(--stone);
+      flex-shrink: 0;
+      transition: color 0.15s, background 0.15s;
+    }
+    .tfn-prev { border: none; }
+    .tfn-prev:hover { color: var(--ink); }
+    .tfn-next { border: 1.5px solid var(--border); border-radius: 50%; color: var(--ink); }
+    .tfn-next:hover { background: var(--canvas); }
+    .tfn-prev.invisible, .tfn-next.invisible { visibility: hidden; pointer-events: none; }
+    .tfn-center {
+      display: flex;
+      flex-direction: column;
       align-items: center;
       gap: 8px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--ink);
-      background: var(--canvas);
-      border: none;
-      border-radius: 100px;
-      padding: 12px 24px;
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s;
-      letter-spacing: -0.02em;
     }
-    .tab-footer-btn:hover { background: var(--bone); }
+    .tfn-dots { display: flex; align-items: center; gap: 6px; }
+    .tfn-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--bone-mid);
+      transition: all 0.2s;
+    }
+    .tfn-dot.active {
+      width: 24px;
+      border-radius: 4px;
+      background: var(--ink);
+    }
+    .tfn-label {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--stone);
+      letter-spacing: -0.01em;
+    }
   </style>
 </head>
 <body>
@@ -886,8 +911,17 @@
       </div>
     </div>
 
-    <div class="tab-footer-nav tab-footer-nav--next-only">
-      <button class="tab-footer-btn" onclick="goToTab('tab-decisions')">Design decisions →</button>
+    <div class="tab-footer-nav">
+      <button class="tfn-prev invisible">←</button>
+      <div class="tfn-center">
+        <div class="tfn-dots">
+          <span class="tfn-dot active"></span>
+          <span class="tfn-dot"></span>
+          <span class="tfn-dot"></span>
+        </div>
+        <span class="tfn-label">Overview</span>
+      </div>
+      <button class="tfn-next" onclick="goToTab('tab-decisions')">→</button>
     </div>
   </div><!-- /tab-overview -->
 
@@ -1327,8 +1361,16 @@
     </div><!-- /decision 3 -->
 
     <div class="tab-footer-nav">
-      <button class="tab-footer-btn" onclick="goToTab('tab-overview')">← Overview</button>
-      <button class="tab-footer-btn" onclick="goToTab('tab-process')">Process →</button>
+      <button class="tfn-prev" onclick="goToTab('tab-overview')">←</button>
+      <div class="tfn-center">
+        <div class="tfn-dots">
+          <span class="tfn-dot"></span>
+          <span class="tfn-dot active"></span>
+          <span class="tfn-dot"></span>
+        </div>
+        <span class="tfn-label">Design decisions</span>
+      </div>
+      <button class="tfn-next" onclick="goToTab('tab-process')">→</button>
     </div>
   </div><!-- /tab-decisions -->
 
@@ -1455,7 +1497,16 @@
     </div>
 
     <div class="tab-footer-nav">
-      <button class="tab-footer-btn" onclick="goToTab('tab-decisions')">← Design decisions</button>
+      <button class="tfn-prev" onclick="goToTab('tab-decisions')">←</button>
+      <div class="tfn-center">
+        <div class="tfn-dots">
+          <span class="tfn-dot"></span>
+          <span class="tfn-dot"></span>
+          <span class="tfn-dot active"></span>
+        </div>
+        <span class="tfn-label">Process</span>
+      </div>
+      <button class="tfn-next invisible">→</button>
     </div>
   </div><!-- /tab-process -->
 
