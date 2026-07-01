@@ -1488,7 +1488,8 @@
     var target = document.getElementById(decision + 's' + stepNum);
     if (target) {
       target.classList.add('active');
-      target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      var offset = target.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: offset, behavior: 'smooth' });
     }
   }
 </script>
