@@ -364,9 +364,17 @@
     .step-header {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 16px;
       padding: 16px 0;
       margin-bottom: 20px;
+    }
+
+    .step-footer-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0 0;
     }
 
     .step-nav-btn {
@@ -877,12 +885,10 @@
       <!-- Step 1 -->
       <div class="step-card active" id="d1s1">
         <div class="step-header">
-          <button class="step-nav-btn invisible"><span class="arrow">‹</span> Prev</button>
           <div class="step-info">
             <div class="step-counter">Step 1 of 3</div>
             <div class="step-title">V1: The original flow</div>
           </div>
-          <button class="step-nav-btn" onclick="showStep('d1',2)">Next <span class="arrow">›</span></button>
         </div>
         <div class="step-divider"></div>
         <div class="step-body">
@@ -922,17 +928,20 @@
             </div>
           </div>
         </div>
+        <div class="step-divider" style="margin: 24px 0 0;"></div>
+        <div class="step-footer-nav">
+          <button class="step-nav-btn invisible"><span class="arrow">‹</span> Prev</button>
+          <button class="step-nav-btn" onclick="showStep('d1',2)">Next <span class="arrow">›</span></button>
+        </div>
       </div>
 
       <!-- Step 2 -->
       <div class="step-card" id="d1s2">
         <div class="step-header">
-          <button class="step-nav-btn" onclick="showStep('d1',1)"><span class="arrow">‹</span> Prev</button>
           <div class="step-info">
             <div class="step-counter">Step 2 of 3</div>
             <div class="step-title">V2: Offer + Membership Onboarding</div>
           </div>
-          <button class="step-nav-btn" onclick="showStep('d1',3)">Next <span class="arrow">›</span></button>
         </div>
         <div class="step-divider"></div>
         <div class="step-body">
@@ -972,17 +981,20 @@
             </div>
           </div>
         </div>
+        <div class="step-divider" style="margin: 24px 0 0;"></div>
+        <div class="step-footer-nav">
+          <button class="step-nav-btn" onclick="showStep('d1',1)"><span class="arrow">‹</span> Prev</button>
+          <button class="step-nav-btn" onclick="showStep('d1',3)">Next <span class="arrow">›</span></button>
+        </div>
       </div>
 
       <!-- Step 3 -->
       <div class="step-card" id="d1s3">
         <div class="step-header">
-          <button class="step-nav-btn" onclick="showStep('d1',2)"><span class="arrow">‹</span> Prev</button>
           <div class="step-info">
             <div class="step-counter">Step 3 of 3</div>
             <div class="step-title">Chosen: Offer + Credit Reserve + Funds Destination</div>
           </div>
-          <button class="step-nav-btn invisible">Next <span class="arrow">›</span></button>
         </div>
         <div class="step-divider"></div>
         <div class="step-body">
@@ -1047,17 +1059,20 @@
           <h5>Payment frequency</h5>
           <p>Detected from linked bank, no manual selection needed.</p>
         </div>
+        <div class="step-divider" style="margin: 24px 0 0;"></div>
+        <div class="step-footer-nav">
+          <button class="step-nav-btn" onclick="showStep('d1',2)"><span class="arrow">‹</span> Prev</button>
+          <button class="step-nav-btn invisible">Next <span class="arrow">›</span></button>
+        </div>
       </div>
 
       <!-- Step 1 -->
       <div class="step-card active" id="d2s1">
         <div class="step-header">
-          <button class="step-nav-btn invisible"><span class="arrow">‹</span> Prev</button>
           <div class="step-info">
             <div class="step-counter">Step 1 of 3</div>
             <div class="step-title">V1: The original flow</div>
           </div>
-          <button class="step-nav-btn" onclick="showStep('d2',2)">Next <span class="arrow">›</span></button>
         </div>
         <div class="step-divider"></div>
         <div class="step-body">
@@ -1094,17 +1109,20 @@
             </div>
           </div>
         </div>
+        <div class="step-divider" style="margin: 24px 0 0;"></div>
+        <div class="step-footer-nav">
+          <button class="step-nav-btn invisible"><span class="arrow">‹</span> Prev</button>
+          <button class="step-nav-btn" onclick="showStep('d2',2)">Next <span class="arrow">›</span></button>
+        </div>
       </div>
 
       <!-- Step 2 -->
       <div class="step-card" id="d2s2">
         <div class="step-header">
-          <button class="step-nav-btn" onclick="showStep('d2',1)"><span class="arrow">‹</span> Prev</button>
           <div class="step-info">
             <div class="step-counter">Step 2 of 3</div>
             <div class="step-title">V2: Reduced friction</div>
           </div>
-          <button class="step-nav-btn" onclick="showStep('d2',3)">Next <span class="arrow">›</span></button>
         </div>
         <div class="step-divider"></div>
         <div class="step-body">
@@ -1141,17 +1159,20 @@
             </div>
           </div>
         </div>
+        <div class="step-divider" style="margin: 24px 0 0;"></div>
+        <div class="step-footer-nav">
+          <button class="step-nav-btn" onclick="showStep('d2',1)"><span class="arrow">‹</span> Prev</button>
+          <button class="step-nav-btn" onclick="showStep('d2',3)">Next <span class="arrow">›</span></button>
+        </div>
       </div>
 
       <!-- Step 3 -->
       <div class="step-card" id="d2s3">
         <div class="step-header">
-          <button class="step-nav-btn" onclick="showStep('d2',2)"><span class="arrow">‹</span> Prev</button>
           <div class="step-info">
             <div class="step-counter">Step 3 of 3</div>
             <div class="step-title">Chosen: Smart Default</div>
           </div>
-          <button class="step-nav-btn invisible">Next <span class="arrow">›</span></button>
         </div>
         <div class="step-divider"></div>
         <div class="step-body">
@@ -1184,6 +1205,11 @@
             </div>
           </div>
         </div>
+        <div class="step-divider" style="margin: 24px 0 0;"></div>
+        <div class="step-footer-nav">
+          <button class="step-nav-btn" onclick="showStep('d2',2)"><span class="arrow">‹</span> Prev</button>
+          <button class="step-nav-btn invisible">Next <span class="arrow">›</span></button>
+        </div>
       </div>
     </div><!-- /decision 2 -->
 
@@ -1197,12 +1223,10 @@
       <!-- Step 1 -->
       <div class="step-card active" id="d3s1">
         <div class="step-header">
-          <button class="step-nav-btn invisible"><span class="arrow">‹</span> Prev</button>
           <div class="step-info">
             <div class="step-counter">Moment 1</div>
             <div class="step-title">Landing screen</div>
           </div>
-          <button class="step-nav-btn" onclick="showStep('d3',2)">Next <span class="arrow">›</span></button>
         </div>
         <div class="step-divider"></div>
         <div class="step-body">
@@ -1239,17 +1263,20 @@
             </div>
           </div>
         </div>
+        <div class="step-divider" style="margin: 24px 0 0;"></div>
+        <div class="step-footer-nav">
+          <button class="step-nav-btn invisible"><span class="arrow">‹</span> Prev</button>
+          <button class="step-nav-btn" onclick="showStep('d3',2)">Next <span class="arrow">›</span></button>
+        </div>
       </div>
 
       <!-- Step 2 -->
       <div class="step-card" id="d3s2">
         <div class="step-header">
-          <button class="step-nav-btn" onclick="showStep('d3',1)"><span class="arrow">‹</span> Prev</button>
           <div class="step-info">
             <div class="step-counter">Moment 2</div>
             <div class="step-title">Fully Secured Loan transition</div>
           </div>
-          <button class="step-nav-btn invisible">Next <span class="arrow">›</span></button>
         </div>
         <div class="step-divider"></div>
         <div class="step-body">
@@ -1277,6 +1304,11 @@
               <p>FSL users see the piggy bank hold animation. Partial loan users see a fund-split animation. Built in Rive to allow state-based switching without duplicating assets, the system always shows the animation that's accurate to the user's actual offer.</p>
             </div>
           </div>
+        </div>
+        <div class="step-divider" style="margin: 24px 0 0;"></div>
+        <div class="step-footer-nav">
+          <button class="step-nav-btn" onclick="showStep('d3',1)"><span class="arrow">‹</span> Prev</button>
+          <button class="step-nav-btn invisible">Next <span class="arrow">›</span></button>
         </div>
       </div>
     </div><!-- /decision 3 -->
