@@ -701,7 +701,6 @@
       align-items: center;
       justify-content: center;
       gap: 24px;
-      border-top: 1px solid var(--border);
       padding-top: 32px;
       margin-top: 48px;
     }
@@ -733,13 +732,13 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--bone-mid);
+      background: #f5eae5;
       transition: all 0.2s;
     }
     .tfn-dot.active {
       width: 24px;
       border-radius: 4px;
-      background: var(--accent-dark);
+      background: #c9a99a;
     }
     .tfn-label {
       font-size: 13px;
@@ -865,7 +864,7 @@
     </div>
 
     <div class="tab-footer-nav">
-      <button class="tfn-prev invisible">&lt;</button>
+      <button class="tfn-prev invisible">‹</button>
       <div class="tfn-center">
         <div class="tfn-dots">
           <span class="tfn-dot active"></span>
@@ -874,7 +873,7 @@
         </div>
         <span class="tfn-label">Overview</span>
       </div>
-      <button class="tfn-next" onclick="goToTab('tab-decisions')">&gt;</button>
+      <button class="tfn-next" onclick="goToTab('tab-decisions')">›</button>
     </div>
   </div><!-- /tab-overview -->
 
@@ -987,7 +986,7 @@
     </div><!-- /decision 2 -->
 
     <div class="tab-footer-nav">
-      <button class="tfn-prev" onclick="goToTab('tab-overview')">&lt;</button>
+      <button class="tfn-prev" onclick="goToTab('tab-overview')">‹</button>
       <div class="tfn-center">
         <div class="tfn-dots">
           <span class="tfn-dot"></span>
@@ -996,7 +995,7 @@
         </div>
         <span class="tfn-label">Design decisions</span>
       </div>
-      <button class="tfn-next" onclick="goToTab('tab-process')">&gt;</button>
+      <button class="tfn-next" onclick="goToTab('tab-process')">›</button>
     </div>
   </div><!-- /tab-decisions -->
 
@@ -1071,7 +1070,7 @@
     </div>
 
     <div class="tab-footer-nav">
-      <button class="tfn-prev" onclick="goToTab('tab-decisions')">&lt;</button>
+      <button class="tfn-prev" onclick="goToTab('tab-decisions')">‹</button>
       <div class="tfn-center">
         <div class="tfn-dots">
           <span class="tfn-dot"></span>
@@ -1080,7 +1079,7 @@
         </div>
         <span class="tfn-label">Process</span>
       </div>
-      <button class="tfn-next invisible">&gt;</button>
+      <button class="tfn-next invisible">›</button>
     </div>
   </div><!-- /tab-process -->
 

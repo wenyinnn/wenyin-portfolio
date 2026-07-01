@@ -715,7 +715,6 @@
       align-items: center;
       justify-content: center;
       gap: 24px;
-      border-top: 1px solid var(--border);
       padding-top: 32px;
       margin-top: 48px;
     }
@@ -747,13 +746,13 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--bone-mid);
+      background: #f5eae5;
       transition: all 0.2s;
     }
     .tfn-dot.active {
       width: 24px;
       border-radius: 4px;
-      background: var(--accent-dark);
+      background: #c9a99a;
     }
     .tfn-label {
       font-size: 13px;
@@ -912,7 +911,7 @@
     </div>
 
     <div class="tab-footer-nav">
-      <button class="tfn-prev invisible">&lt;</button>
+      <button class="tfn-prev invisible">‹</button>
       <div class="tfn-center">
         <div class="tfn-dots">
           <span class="tfn-dot active"></span>
@@ -921,7 +920,7 @@
         </div>
         <span class="tfn-label">Overview</span>
       </div>
-      <button class="tfn-next" onclick="goToTab('tab-decisions')">&gt;</button>
+      <button class="tfn-next" onclick="goToTab('tab-decisions')">›</button>
     </div>
   </div><!-- /tab-overview -->
 
@@ -950,15 +949,15 @@
           <p class="step-text">The original flow had separate screens for everything, users had to navigate through each step sequentially with no sense of what was related.</p>
           <div class="flow-tags">
             <span class="flow-tag">Offer screen</span>
-            <span class="flow-arrow">&gt;</span>
+            <span class="flow-arrow">›</span>
             <span class="flow-tag">Membership onboarding</span>
-            <span class="flow-arrow">&gt;</span>
+            <span class="flow-arrow">›</span>
             <span class="flow-tag">Payment schedule setup</span>
-            <span class="flow-arrow">&gt;</span>
+            <span class="flow-arrow">›</span>
             <span class="flow-tag">Credit Reserve setup</span>
-            <span class="flow-arrow">&gt;</span>
+            <span class="flow-arrow">›</span>
             <span class="flow-tag">Funds destination</span>
-            <span class="flow-arrow">&gt;</span>
+            <span class="flow-arrow">›</span>
             <span class="flow-tag">Completion</span>
           </div>
           <div class="phone-grid">
@@ -1002,13 +1001,13 @@
           <p class="step-text">My first instinct was to combine the offer and membership screens, since membership is mandatory to take the loan, showing both together would give users a complete picture of what they're signing up for in one view.</p>
           <div class="flow-tags">
             <span class="flow-tag highlighted">Offer screen + Membership onboarding</span>
-            <span class="flow-arrow">&gt;</span>
+            <span class="flow-arrow">›</span>
             <span class="flow-tag">Payment schedule setup</span>
-            <span class="flow-arrow">&gt;</span>
+            <span class="flow-arrow">›</span>
             <span class="flow-tag">Credit Reserve setup</span>
-            <span class="flow-arrow">&gt;</span>
+            <span class="flow-arrow">›</span>
             <span class="flow-tag">Funds destination</span>
-            <span class="flow-arrow">&gt;</span>
+            <span class="flow-arrow">›</span>
             <span class="flow-tag">Completion</span>
           </div>
           <div class="phone-grid">
@@ -1054,11 +1053,11 @@
           <p class="step-text">Since membership couldn't share the offer screen without causing confusion, we looked at what else could be combined. Credit Reserve setup and Funds destination are directly related to the offer amounts already shown, a natural fit.</p>
           <div class="flow-tags">
             <span class="flow-tag highlighted">Offer screen + Credit Reserve setup + Funds destination</span>
-            <span class="flow-arrow">&gt;</span>
+            <span class="flow-arrow">›</span>
             <span class="flow-tag">Membership onboarding</span>
-            <span class="flow-arrow">&gt;</span>
+            <span class="flow-arrow">›</span>
             <span class="flow-tag">Payment schedule setup</span>
-            <span class="flow-arrow">&gt;</span>
+            <span class="flow-arrow">›</span>
             <span class="flow-tag">Completion</span>
           </div>
           <div class="phone-grid">
@@ -1361,7 +1360,7 @@
     </div><!-- /decision 3 -->
 
     <div class="tab-footer-nav">
-      <button class="tfn-prev" onclick="goToTab('tab-overview')">&lt;</button>
+      <button class="tfn-prev" onclick="goToTab('tab-overview')">‹</button>
       <div class="tfn-center">
         <div class="tfn-dots">
           <span class="tfn-dot"></span>
@@ -1370,7 +1369,7 @@
         </div>
         <span class="tfn-label">Design decisions</span>
       </div>
-      <button class="tfn-next" onclick="goToTab('tab-process')">&gt;</button>
+      <button class="tfn-next" onclick="goToTab('tab-process')">›</button>
     </div>
   </div><!-- /tab-decisions -->
 
@@ -1497,7 +1496,7 @@
     </div>
 
     <div class="tab-footer-nav">
-      <button class="tfn-prev" onclick="goToTab('tab-decisions')">&lt;</button>
+      <button class="tfn-prev" onclick="goToTab('tab-decisions')">‹</button>
       <div class="tfn-center">
         <div class="tfn-dots">
           <span class="tfn-dot"></span>
@@ -1506,7 +1505,7 @@
         </div>
         <span class="tfn-label">Process</span>
       </div>
-      <button class="tfn-next invisible">&gt;</button>
+      <button class="tfn-next invisible">›</button>
     </div>
   </div><!-- /tab-process -->
 
