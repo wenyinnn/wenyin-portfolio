@@ -699,7 +699,8 @@
     .tab-footer-nav {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
+      gap: 24px;
       border-top: 1px solid var(--border);
       padding-top: 32px;
       margin-top: 48px;
@@ -712,15 +713,14 @@
       justify-content: center;
       background: none;
       cursor: pointer;
-      font-size: 18px;
-      color: var(--stone);
+      font-size: 16px;
+      color: var(--ink);
       flex-shrink: 0;
-      transition: color 0.15s, background 0.15s;
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      transition: background 0.15s;
     }
-    .tfn-prev { border: none; }
-    .tfn-prev:hover { color: var(--ink); }
-    .tfn-next { border: 1.5px solid var(--border); border-radius: 50%; color: var(--ink); }
-    .tfn-next:hover { background: var(--canvas); }
+    .tfn-prev:hover, .tfn-next:hover { background: var(--canvas); }
     .tfn-prev.invisible, .tfn-next.invisible { visibility: hidden; pointer-events: none; }
     .tfn-center {
       display: flex;
@@ -739,7 +739,7 @@
     .tfn-dot.active {
       width: 24px;
       border-radius: 4px;
-      background: var(--ink);
+      background: var(--accent-dark);
     }
     .tfn-label {
       font-size: 13px;
@@ -865,7 +865,7 @@
     </div>
 
     <div class="tab-footer-nav">
-      <button class="tfn-prev invisible">←</button>
+      <button class="tfn-prev invisible">&lt;</button>
       <div class="tfn-center">
         <div class="tfn-dots">
           <span class="tfn-dot active"></span>
@@ -874,7 +874,7 @@
         </div>
         <span class="tfn-label">Overview</span>
       </div>
-      <button class="tfn-next" onclick="goToTab('tab-decisions')">→</button>
+      <button class="tfn-next" onclick="goToTab('tab-decisions')">&gt;</button>
     </div>
   </div><!-- /tab-overview -->
 
@@ -987,7 +987,7 @@
     </div><!-- /decision 2 -->
 
     <div class="tab-footer-nav">
-      <button class="tfn-prev" onclick="goToTab('tab-overview')">←</button>
+      <button class="tfn-prev" onclick="goToTab('tab-overview')">&lt;</button>
       <div class="tfn-center">
         <div class="tfn-dots">
           <span class="tfn-dot"></span>
@@ -996,7 +996,7 @@
         </div>
         <span class="tfn-label">Design decisions</span>
       </div>
-      <button class="tfn-next" onclick="goToTab('tab-process')">→</button>
+      <button class="tfn-next" onclick="goToTab('tab-process')">&gt;</button>
     </div>
   </div><!-- /tab-decisions -->
 
@@ -1071,7 +1071,7 @@
     </div>
 
     <div class="tab-footer-nav">
-      <button class="tfn-prev" onclick="goToTab('tab-decisions')">←</button>
+      <button class="tfn-prev" onclick="goToTab('tab-decisions')">&lt;</button>
       <div class="tfn-center">
         <div class="tfn-dots">
           <span class="tfn-dot"></span>
@@ -1080,7 +1080,7 @@
         </div>
         <span class="tfn-label">Process</span>
       </div>
-      <button class="tfn-next invisible">→</button>
+      <button class="tfn-next invisible">&gt;</button>
     </div>
   </div><!-- /tab-process -->
 
