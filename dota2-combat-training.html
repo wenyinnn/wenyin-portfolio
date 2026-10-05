@@ -83,41 +83,13 @@
       letter-spacing: -0.4px;
     }
 
-    .hero-metrics {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      background: var(--bone);
-      border-radius: 16px;
-      padding: 24px 32px;
-    }
-
-    .metric {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .metric-value {
-      font-size: 24px;
-      font-weight: 500;
-      color: var(--accent-dark);
-      line-height: normal;
-    }
-
-    .metric-label {
+    .hero-disclaimer {
+      background: var(--canvas);
+      border-radius: 12px;
+      padding: 16px 24px;
       font-size: 14px;
-      font-weight: 500;
-      color: var(--accent-dark);
-      line-height: normal;
-    }
-
-    .metric-divider {
-      width: 1px;
-      height: 48px;
-      background: var(--bone-mid);
-      flex-shrink: 0;
+      color: var(--stone);
+      line-height: 1.6;
     }
 
     .hero-visual {
@@ -163,7 +135,6 @@
       .hero-phone { width: 120px; height: auto; }
       .hero-phone img { width: 120px; }
       .hero-title { font-size: 32px; }
-      .hero-metrics { flex-wrap: wrap; }
     }
 
     /* ─── TAB CHIPS ─── */
@@ -221,9 +192,7 @@
       margin-bottom: 24px;
     }
 
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
-
+    /* Problem card with red bar */
     .card-problem {
       border: 1px solid var(--border);
       border-radius: 12px;
@@ -237,84 +206,126 @@
       padding: 24px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 16px;
     }
 
     .card-problem-body h4 { font-size: 17px; font-weight: 500; color: var(--ink); line-height: 1.4; }
-    .card-problem-body p  { font-size: 15px; font-weight: 400; color: var(--stone); line-height: 1.6; }
 
-    /* Steps before/after */
-    .steps-card {
+    .card-problem-body ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+    .card-problem-body li { font-size: 15px; font-weight: 400; color: var(--stone); line-height: 1.6; }
+
+    /* Journey grid */
+    .journey-card {
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 24px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 24px;
     }
 
-    .steps-card h4 { font-size: 17px; font-weight: 500; color: var(--ink); }
+    .journey-card h4 { font-size: 17px; font-weight: 500; color: var(--ink); }
 
-    .step-list         { display: flex; flex-direction: column; gap: 16px; }
-    .step-list.after   { gap: 12px; }
+    .journey-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 
-    .step-item {
+    .journey-box {
+      background: var(--canvas);
+      border-radius: 16px;
+      padding: 16px;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       gap: 8px;
-      font-size: 16px;
-      color: var(--stone);
-      line-height: 25px;
-      padding-left: 8px;
+      align-items: center;
+      text-align: center;
     }
 
-    .step-dot {
-      width: 6.3px; height: 6.3px;
-      border-radius: 50%;
-      background: var(--stone);
-      flex-shrink: 0;
-      align-self: flex-start;
-      margin-top: 9.3px;
+    .journey-box.missing {
+      background: none;
+      border: 2px dashed var(--red);
     }
 
-    .step-dot.green    { background: var(--green); }
-    .step-dot.disabled { background: rgba(158,156,151,0.6); }
+    .journey-box-title { font-size: 14px; font-weight: 500; color: var(--ink); }
+    .journey-box-label { font-size: 14px; color: var(--stone); line-height: 1.5; }
+    .journey-box.missing .journey-box-title,
+    .journey-box.missing .journey-box-label { color: var(--ink); }
 
-    .step-item.disabled  { color: rgba(158,156,151,0.8); text-decoration: line-through; }
-    .step-item.highlight {
-      color: var(--green-text);
-      background: var(--green-light);
-      border-radius: 8px;
-      padding-left: 8px;
-    }
+    @media (max-width: 640px) { .journey-grid { grid-template-columns: 1fr 1fr; } }
 
-    /* Outcome cards */
-    .outcome-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 600px) { .outcome-cards { grid-template-columns: 1fr; } }
+    /* Two col */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
 
-    .outcome-card {
+    /* Check list cards */
+    .check-card {
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 24px;
-      text-align: center;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      align-items: center;
+      gap: 24px;
     }
 
-    .outcome-value { font-size: 28px; font-weight: 500; color: var(--ink); }
+    .check-card h4 { font-size: 17px; font-weight: 500; color: var(--ink); }
 
-    .outcome-label {
+    .check-list { display: flex; flex-direction: column; gap: 12px; }
+
+    .check-item {
+      background: var(--green-light);
+      color: var(--green-text);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 15px;
+      line-height: 1.6;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .check-item.negative {
+      background: var(--canvas);
+      color: var(--accent-dark);
+    }
+
+    /* Full-width screenshot */
+    .screenshot-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      margin-top: 24px;
+    }
+
+    .screenshot-block img {
+      width: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+
+    .screenshot-caption {
       font-size: 13px;
       color: var(--stone);
+      text-align: center;
       line-height: 1.5;
-      white-space: nowrap;
     }
 
-    @media (max-width: 500px) { .outcome-label { white-space: normal; } }
+    /* User cards */
+    .user-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .user-cards { grid-template-columns: 1fr; } }
+
+    .user-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .user-card h4 { font-size: 17px; font-weight: 500; color: var(--ink); }
+    .user-card p  { font-size: 15px; color: var(--stone); line-height: 1.6; }
 
     /* ─── DESIGN DECISIONS TAB ─── */
     .decision-block { margin-bottom: 72px; }
@@ -331,96 +342,26 @@
     .decision-heading { font-size: 20px; font-weight: 450; color: var(--ink); margin-bottom: 16px; line-height: 1.3; }
     .decision-desc    { font-size: 16px; color: var(--ink); line-height: 25px; margin-bottom: 24px; }
 
-    .how-it-works {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 16px;
-    }
-    .how-it-works .info-box { flex: 1; text-align: center; justify-content: center; margin: 0; }
-    .how-it-works .info-box p { font-size: 15px; color: var(--stone); line-height: 1.5; }
-    .hiw-arrow { font-size: 18px; color: var(--stone); flex-shrink: 0; }
-    @media (max-width: 640px) {
-      .how-it-works { flex-direction: column; }
-      .hiw-arrow { transform: rotate(90deg); }
-    }
+    /* Comparison grid */
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+    @media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
 
-    .info-boxes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
-    @media (max-width: 640px) { .info-boxes { grid-template-columns: 1fr; } }
+    .compare-item { display: flex; flex-direction: column; gap: 10px; }
 
-    .info-box {
-      background: var(--white);
-      border: 1px solid var(--border);
+    .compare-item img {
+      width: 100%;
       border-radius: 12px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      object-fit: cover;
     }
 
-    .info-box h5 { font-size: 15px; font-weight: 500; color: var(--ink); }
-    .info-box p  { font-size: 14px; color: var(--stone); line-height: 1.6; }
-
-    /* Step card */
-    .step-card {
-      background: var(--canvas);
-      border-radius: 16px;
-      padding: 24px;
-      display: none;
+    .compare-label {
+      font-size: 13px;
+      color: var(--stone);
+      text-align: center;
     }
-
-    .step-card.active { display: block; }
-
-    .step-header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      padding: 16px 0;
-      margin-bottom: 20px;
-    }
-
-    .step-footer-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 32px 0 0;
-    }
-
-    .step-nav-btn {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 400;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: var(--white);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      flex-shrink: 0;
-      color: var(--ink);
-      transition: background 0.15s;
-      letter-spacing: -0.02em;
-    }
-
-    .step-nav-btn:hover { background: #f5f5f3; }
-    .step-nav-btn.invisible { visibility: hidden; pointer-events: none; }
-    .step-nav-btn .arrow { font-size: 12px; }
-
-    .step-info { flex: 1; text-align: center; }
-    .step-counter { font-size: 13px; color: var(--stone); margin-bottom: 2px; }
-    .step-title   { font-size: 18px; font-weight: 600; color: var(--ink); }
-
-    .step-divider { height: 1px; background: var(--border); margin: 0 0 24px; }
-
-    .step-body { display: flex; flex-direction: column; gap: 40px; }
-
-    .step-text { font-size: 14px; color: var(--ink); line-height: 1.75; }
 
     /* Flow tags */
-    .flow-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .flow-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 24px; }
 
     .flow-tag {
       font-size: 13px;
@@ -434,31 +375,7 @@
       white-space: nowrap;
     }
 
-    .flow-tag.highlighted { border-color: var(--accent-dark); color: var(--accent-dark); }
-    .flow-arrow { font-size: 14px; color: var(--ink); }
-
-    /* Phone grid */
-    .phone-grid {
-      display: flex;
-      gap: 32px;
-      justify-content: center;
-      align-items: flex-end;
-      flex-wrap: wrap;
-    }
-
-    .phone-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-
-    .phone-item img {
-      width: 190px;
-      height: auto;
-      object-fit: contain;
-      border-radius: 0;
-      border: none;
-    }
-
-    img.gif-img { border-radius: 24px; }
-
-    .phone-label { font-size: 13px; color: var(--stone); text-align: center; }
+    .flow-arrow { font-size: 14px; color: var(--stone); }
 
     /* Statement card */
     .statement-card {
@@ -467,6 +384,7 @@
       border-radius: 12px;
       display: flex;
       overflow: hidden;
+      margin-bottom: 24px;
     }
 
     .statement-bar { width: 8px; flex-shrink: 0; }
@@ -486,7 +404,7 @@
 
     .statement-text { font-size: 15px; color: var(--ink); line-height: 1.65; }
 
-    /* Numbered insights */
+    /* Insights */
     .insights { display: flex; flex-direction: column; gap: 28px; }
 
     .insight h5 { font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 6px; line-height: 1.4; }
@@ -504,7 +422,6 @@
       margin-bottom: 16px;
     }
 
-    /* Role card */
     .role-card {
       background: var(--white);
       border: 1px solid var(--border);
@@ -531,63 +448,7 @@
     .role-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--stone); flex-shrink: 0; }
     .role-dot--green { background: var(--green); }
 
-    .timeline-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .timeline-phase {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .timeline-phase h4 {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--ink);
-      line-height: 1.4;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .timeline-phase h4::before {
-      content: '';
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--ink);
-      flex-shrink: 0;
-      margin-top: 6px;
-    }
-
-    .timeline-phase p {
-      font-size: 14px;
-      color: var(--stone);
-      line-height: 1.75;
-      padding-left: 17px;
-    }
-
-    .constraint-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      display: flex;
-      overflow: hidden;
-      margin-bottom: 16px;
-    }
-
-    .constraint-bar { width: 8px; background: var(--red); flex-shrink: 0; }
-
-    .constraint-body { padding: 24px; display: flex; flex-direction: column; gap: 12px; }
-    .constraint-body h4 { font-size: 16px; font-weight: 500; color: var(--ink); line-height: 1.4; }
-    .constraint-body p  { font-size: 14px; color: var(--stone); line-height: 1.7; }
+    .intro-text { font-size: 16px; color: var(--ink); line-height: 25px; margin-bottom: 24px; }
 
     .next-card {
       background: var(--white);
@@ -603,8 +464,6 @@
     .next-body { padding: 24px; display: flex; flex-direction: column; gap: 8px; }
     .next-body h4 { font-size: 16px; font-weight: 500; color: var(--ink); }
     .next-body p  { font-size: 14px; color: var(--stone); line-height: 1.7; }
-
-    .intro-text { font-size: 16px; color: var(--ink); line-height: 25px; margin-bottom: 24px; }
 
     /* ─── NAVBAR ─── */
     .navbar {
@@ -781,23 +640,10 @@
     <div class="hero-left">
       <div class="hero-title-group">
         <h1 class="hero-title">Dota 2: Combat<br>Training</h1>
-        <p class="hero-desc">Designing an in-game training mode that helps new players learn Dota 2's complex combat mechanics through guided, progressive practice.</p>
+        <p class="hero-desc">A feature concept for Dota 2 exploring how focused 1v1 bot combat could help players practice fighting specific heroes, without committing to a full game.</p>
       </div>
-      <div class="hero-metrics">
-        <div class="metric">
-          <span class="metric-value">+X%</span>
-          <span class="metric-label">Metric label</span>
-        </div>
-        <div class="metric-divider"></div>
-        <div class="metric">
-          <span class="metric-value">+X%</span>
-          <span class="metric-label">Metric label</span>
-        </div>
-        <div class="metric-divider"></div>
-        <div class="metric">
-          <span class="metric-value">~Xk</span>
-          <span class="metric-label">Metric label</span>
-        </div>
+      <div class="hero-disclaimer">
+        A personal project exploring a feature idea for Dota 2, not affiliated with, commissioned by, or endorsed by Valve Corporation.
       </div>
     </div>
     <div class="hero-visual">
@@ -820,76 +666,108 @@
   ════════════════════════════════════════ -->
   <div class="tab-content active" id="tab-overview">
 
-    <!-- HOW THE PRODUCT WORKS -->
+    <!-- CONTEXT -->
     <div class="overview-section">
-      <p class="section-label">How the Product Works</p>
-      <p class="overview-lead">Dota 2: Combat Training is an in-game training mode that teaches new players core combat mechanics through structured, progressive scenarios.</p>
-      <div class="how-it-works">
-        <div class="info-box"><p>Players enter guided combat scenarios with contextual tips</p></div>
-        <span class="hiw-arrow">›</span>
-        <div class="info-box"><p>Players practice mechanics in a low-stakes environment</p></div>
-        <span class="hiw-arrow">›</span>
-        <div class="info-box"><p>Players unlock harder scenarios as skills improve</p></div>
+      <p class="section-label">Context</p>
+      <p class="overview-lead">I picked up Dota 2 in December 2025, not because I sought it out, but because my friends play it every day and I wanted to be part of that. They've been playing since they were teenagers. I joined matches underprepared, and quickly learned what that costs in Dota 2.</p>
+      <div class="card-problem">
+        <div class="card-problem-bar"></div>
+        <div class="card-problem-body">
+          <h4>When new players enter real games underprepared:</h4>
+          <ul>
+            <li>Blamed for mistakes you don't yet understand.</li>
+            <li>Matched with higher-skilled players when joining friends, matchmaking averages rank, not individual skill.</li>
+            <li>Dota 2 has one of the most hostile communities in gaming, unfiltered voice and text chat.</li>
+          </ul>
+        </div>
       </div>
     </div>
 
     <!-- THE PROBLEM -->
     <div class="overview-section">
       <p class="section-label">The Problem</p>
-      <p class="overview-lead">New players faced a steep learning curve and churned early because the game offered no structured way to learn combat fundamentals.</p>
-      <div class="two-col">
-        <div class="card-problem">
-          <div class="card-problem-bar"></div>
-          <div class="card-problem-body">
-            <h4>Problem title one</h4>
-            <p>Description of the first core problem that drove this design.</p>
+      <p class="overview-lead">Dota's tutorial is genuinely comprehensive, but most new players skip or abandon the tutorial. When you first download the game, you want to play, not study. Both myself and a friend who started Dota 2 recently took the same path independently, confirmed by experienced friends who teach newcomers.</p>
+      <div class="journey-card">
+        <h4>Official journey: What Valve designed</h4>
+        <div class="journey-grid">
+          <div class="journey-box">
+            <span class="journey-box-title">Tutorial</span>
+            <span class="journey-box-label">1–2 hrs</span>
+          </div>
+          <div class="journey-box">
+            <span class="journey-box-title">New Player Mode</span>
+            <span class="journey-box-label">Guided real games</span>
+          </div>
+          <div class="journey-box">
+            <span class="journey-box-title">Bot Match</span>
+            <span class="journey-box-label">Full game vs bots</span>
+          </div>
+          <div class="journey-box">
+            <span class="journey-box-title">Normal Game</span>
+            <span class="journey-box-label">Vs real players</span>
           </div>
         </div>
-        <div class="card-problem">
-          <div class="card-problem-bar"></div>
-          <div class="card-problem-body">
-            <h4>Problem title two</h4>
-            <p>Description of the second core problem that drove this design.</p>
+        <h4>Actual journey: What players actually do</h4>
+        <div class="journey-grid">
+          <div class="journey-box">
+            <span class="journey-box-title">Pick one hero</span>
+            <span class="journey-box-label">Stick with one hero without going through tutorial</span>
+          </div>
+          <div class="journey-box">
+            <span class="journey-box-title">Demo mode</span>
+            <span class="journey-box-label">Learn abilities and test skills on stationary target</span>
+          </div>
+          <div class="journey-box missing">
+            <span class="journey-box-title">Combat practice</span>
+            <span class="journey-box-label">No self-serve option, only possible with a friend willing to spar</span>
+          </div>
+          <div class="journey-box missing">
+            <span class="journey-box-title">Bot / real games</span>
+            <span class="journey-box-label">Underprepared and get blamed, might lead to quitting</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- WHAT CHANGED -->
+    <!-- THE OPPORTUNITY -->
     <div class="overview-section">
-      <p class="section-label">What Changed</p>
+      <p class="section-label">The Opportunity</p>
+      <p class="overview-lead">Demo mode is where most new players naturally land after skipping the tutorial: self-paced, no social pressure, free to test any hero, abilities, and items on a full or smaller map. It's the right place to learn. The one thing missing is an opponent that fights back. Adding that closes the gap between "I know what my hero does" and "I know how to fight with it."</p>
       <div class="two-col">
-        <div class="steps-card">
-          <h4>Before</h4>
-          <div class="step-list">
-            <div class="step-item"><span class="step-dot"></span>Step one</div>
-            <div class="step-item"><span class="step-dot"></span>Step two</div>
-            <div class="step-item disabled"><span class="step-dot disabled"></span>Step three</div>
-            <div class="step-item disabled"><span class="step-dot disabled"></span>Step four</div>
+        <div class="check-card">
+          <h4>What Demo mode covers</h4>
+          <div class="check-list">
+            <div class="check-item">Test hero abilities and skill timing</div>
+            <div class="check-item">Practice combos at your own pace</div>
+            <div class="check-item">Try different items and builds freely</div>
           </div>
         </div>
-        <div class="steps-card">
-          <h4>After</h4>
-          <div class="step-list after">
-            <div class="step-item highlight"><span class="step-dot green"></span>Step one (improved)</div>
-            <div class="step-item"><span class="step-dot"></span>Step two</div>
-            <div class="step-item highlight"><span class="step-dot green"></span>Step three (improved)</div>
+        <div class="check-card">
+          <h4>What Demo mode doesn't cover</h4>
+          <div class="check-list">
+            <div class="check-item negative">No self-serve sparring: requires a friend to control the enemy</div>
+            <div class="check-item negative">No combat decisions: when to engage, retreat, trade hits</div>
           </div>
         </div>
       </div>
+      <div class="screenshot-block">
+        <img src="images/dota/demo-current.png" alt="Current Demo mode">
+        <span class="screenshot-caption">Current Demo mode: The enemy has to be controlled manually, you can't fight and control the opponent at the same time.</span>
+      </div>
     </div>
 
-    <!-- OUTCOME -->
+    <!-- THE PROPOSED FEATURE -->
     <div class="overview-section">
-      <p class="section-label">Outcome</p>
-      <div class="outcome-cards">
-        <div class="outcome-card">
-          <span class="outcome-value">+X%</span>
-          <span class="outcome-label">Outcome metric one</span>
+      <p class="section-label">The Proposed Feature: Combat Training Inside Demo Mode</p>
+      <p class="overview-lead">After learning abilities in Demo mode, new players can now go one step further, fight a bot-controlled enemy hero of their choice at a difficulty they set. No farming, no objectives, no 40-minute commitment. Just the combat practice they need before stepping into a real game.</p>
+      <div class="user-cards">
+        <div class="user-card">
+          <h4>New players</h4>
+          <p>New to Dota 2 and still finding their footing. Need a low-pressure, self-paced way to build combat confidence before entering real games.</p>
         </div>
-        <div class="outcome-card">
-          <span class="outcome-value">+X%</span>
-          <span class="outcome-label">Outcome metric two</span>
+        <div class="user-card">
+          <h4>Experienced players</h4>
+          <p>Want to test a new or unfamiliar hero in realistic combat before committing to a ranked game, without the overhead of a full bot match.</p>
         </div>
       </div>
     </div>
@@ -916,120 +794,37 @@
 
     <!-- ── DECISION 1 ── -->
     <div class="decision-block">
-      <p class="decision-number">Decision 1: Decision label</p>
-      <h2 class="decision-heading">Decision heading</h2>
-      <p class="decision-desc">Description of the design challenge and context for this decision block.</p>
+      <p class="decision-number">Decision 1: Surfacing the feature</p>
+      <h2 class="decision-heading">Fight a bot enemy right inside Demo mode</h2>
+      <p class="decision-desc">The design question was where and how to surface the Combat Training entry point without disrupting the existing Demo mode experience, which is already familiar to players who use it regularly.</p>
 
-      <!-- Step 1 -->
-      <div class="step-card active" id="d1s1">
-        <div class="step-header">
-          <div class="step-info">
-            <div class="step-counter">Step 1 of 3</div>
-            <div class="step-title">V1: The original</div>
-          </div>
+      <div class="compare-grid">
+        <div class="compare-item">
+          <img src="images/dota/d1-current.png" alt="Current Demo mode panel">
+          <span class="compare-label">Current: No combat option</span>
         </div>
-        <div class="step-divider"></div>
-        <div class="step-body">
-          <p class="step-text">Description of the original state and its issues.</p>
-          <div class="phone-grid">
-            <div class="phone-item">
-              <img src="images/dota/d1-s1-screen.png" alt="Original screen">
-              <span class="phone-label">Screen label</span>
-            </div>
-          </div>
-          <div class="statement-card">
-            <div class="statement-bar red"></div>
-            <div class="statement-body">
-              <span class="statement-type">Problem</span>
-              <p class="statement-text">The key problem with the original approach.</p>
-            </div>
-          </div>
-        </div>
-        <div class="step-footer-nav">
-          <button class="step-nav-btn invisible"><span class="arrow">‹</span> Prev</button>
-          <button class="step-nav-btn" onclick="showStep('d1',2)">Next <span class="arrow">›</span></button>
+        <div class="compare-item">
+          <img src="images/dota/d1-proposed.png" alt="Proposed Demo mode panel with combat section">
+          <span class="compare-label">After '+Enemy' is clicked, a Combat section appears with difficulty checkboxes and a 'Start Combat' button</span>
         </div>
       </div>
 
-      <!-- Step 2 -->
-      <div class="step-card" id="d1s2">
-        <div class="step-header">
-          <div class="step-info">
-            <div class="step-counter">Step 2 of 3</div>
-            <div class="step-title">V2: Iteration</div>
-          </div>
-        </div>
-        <div class="step-divider"></div>
-        <div class="step-body">
-          <p class="step-text">Description of what changed in this iteration and why.</p>
-          <div class="phone-grid">
-            <div class="phone-item">
-              <img src="images/dota/d1-s2-screen.png" alt="V2 screen">
-              <span class="phone-label">Screen label</span>
-            </div>
-          </div>
-          <div class="statement-card">
-            <div class="statement-bar blue"></div>
-            <div class="statement-body">
-              <span class="statement-type">Improvement</span>
-              <p class="statement-text">What improved with this iteration, and what concern was raised.</p>
-            </div>
-          </div>
-          <div class="insights">
-            <div class="insight">
-              <h5>1. Insight heading</h5>
-              <p>Explanation of the insight and why it mattered.</p>
-            </div>
-            <div class="insight">
-              <h5>2. Insight heading</h5>
-              <p>Explanation of the insight and why it mattered.</p>
-            </div>
-          </div>
-        </div>
-        <div class="step-footer-nav">
-          <button class="step-nav-btn" onclick="showStep('d1',1)"><span class="arrow">‹</span> Prev</button>
-          <button class="step-nav-btn" onclick="showStep('d1',3)">Next <span class="arrow">›</span></button>
+      <div class="statement-card">
+        <div class="statement-bar blue"></div>
+        <div class="statement-body">
+          <span class="statement-type">Improvement</span>
+          <p class="statement-text">The enemy hero is already selected via '+Enemy'. The only remaining choice is difficulty, keeping setup fast and frictionless for new players who just want to get into a fight.</p>
         </div>
       </div>
 
-      <!-- Step 3 -->
-      <div class="step-card" id="d1s3">
-        <div class="step-header">
-          <div class="step-info">
-            <div class="step-counter">Step 3 of 3</div>
-            <div class="step-title">Chosen: Final direction</div>
-          </div>
+      <div class="insights">
+        <div class="insight">
+          <h5>1. Difficulty tiers are already built</h5>
+          <p>Easy, Medium, Hard, and Unfair already exist in Play vs Bots, the bot behaviour and difficulty logic are already built. Combat Training plugs into the same system rather than building new bot behaviour from scratch, making it a low-engineering-effort addition.</p>
         </div>
-        <div class="step-divider"></div>
-        <div class="step-body">
-          <p class="step-text">Description of the chosen direction and the reasoning behind it.</p>
-          <div class="phone-grid">
-            <div class="phone-item">
-              <img src="images/dota/d1-s3-screen.png" alt="Chosen screen">
-              <span class="phone-label">Screen label</span>
-            </div>
-          </div>
-          <div class="statement-card">
-            <div class="statement-bar green"></div>
-            <div class="statement-body">
-              <span class="statement-type">Chosen Direction</span>
-              <p class="statement-text">Why this was the right choice and what it achieves.</p>
-            </div>
-          </div>
-          <div class="insights">
-            <div class="insight">
-              <h5>1. Insight heading</h5>
-              <p>Explanation of the insight and why it mattered.</p>
-            </div>
-            <div class="insight">
-              <h5>2. Insight heading</h5>
-              <p>Explanation of the insight and why it mattered.</p>
-            </div>
-          </div>
-        </div>
-        <div class="step-footer-nav">
-          <button class="step-nav-btn" onclick="showStep('d1',2)"><span class="arrow">‹</span> Prev</button>
-          <button class="step-nav-btn invisible">Next <span class="arrow">›</span></button>
+        <div class="insight">
+          <h5>2. The COMBAT section only appears when relevant</h5>
+          <p>The COMBAT section only appears after '+Enemy' is clicked. Veterans who use Demo without spawning an enemy continue as normal, nothing in their workflow changes.</p>
         </div>
       </div>
     </div><!-- /decision 1 -->
@@ -1037,217 +832,67 @@
 
     <!-- ── DECISION 2 ── -->
     <div class="decision-block">
-      <p class="decision-number">Decision 2: Decision label</p>
-      <h2 class="decision-heading">Decision heading</h2>
-      <p class="decision-desc">Description of the design challenge and context for this decision block.</p>
+      <p class="decision-number">Decision 2: Session flow</p>
+      <h2 class="decision-heading">Combat behaviour before and after a fight</h2>
+      <p class="decision-desc">Once a fight starts, the experience needs to handle the session loop cleanly, how combat begins, what happens after a death, and how both heroes re-engage. The goal was to keep new players in control of the pace without creating awkward standoffs.</p>
 
-      <!-- Step 1 -->
-      <div class="step-card active" id="d2s1">
-        <div class="step-header">
-          <div class="step-info">
-            <div class="step-counter">Step 1 of 3</div>
-            <div class="step-title">V1: The original</div>
-          </div>
+      <p class="overview-lead" style="margin-bottom:16px;">Session behaviour: The same pattern at start and after every death</p>
+      <p class="decision-desc">When START COMBAT is clicked, both heroes begin as silhouettes at their respective fountains. A 3-second countdown gives new players time to buy items, level up, or adjust before combat begins. When either hero dies, they respawn at their fountain as a silhouette, safe from attack until they choose to re-engage. The surviving hero stays active on the map.</p>
+
+      <div class="flow-tags">
+        <span class="flow-tag">Spawn at fountain</span>
+        <span class="flow-arrow">›</span>
+        <span class="flow-tag">Both start as silhouettes</span>
+        <span class="flow-arrow">›</span>
+        <span class="flow-tag">3s countdown</span>
+        <span class="flow-arrow">›</span>
+        <span class="flow-tag">Buy items, level up, get ready</span>
+        <span class="flow-arrow">›</span>
+        <span class="flow-tag">Combat begins</span>
+        <span class="flow-arrow">›</span>
+        <span class="flow-tag">Activates on move or attack</span>
+        <span class="flow-arrow">›</span>
+        <span class="flow-tag">Either hero dies</span>
+        <span class="flow-arrow">›</span>
+        <span class="flow-tag">Respawn at fountain</span>
+        <span class="flow-arrow">›</span>
+        <span class="flow-tag">Silhouette again, re-engage when ready</span>
+      </div>
+
+      <div class="compare-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+        <div class="compare-item">
+          <img src="images/dota/d2-spawn.png" alt="Spawn at fountain">
+          <span class="compare-label">Spawn at fountain</span>
         </div>
-        <div class="step-divider"></div>
-        <div class="step-body">
-          <p class="step-text">Description of the original state.</p>
-          <div class="phone-grid">
-            <div class="phone-item">
-              <img src="images/dota/d2-s1-screen.png" alt="Original screen">
-              <span class="phone-label">Screen label</span>
-            </div>
-          </div>
-          <div class="statement-card">
-            <div class="statement-bar red"></div>
-            <div class="statement-body">
-              <span class="statement-type">Problem</span>
-              <p class="statement-text">The key problem with the original approach.</p>
-            </div>
-          </div>
+        <div class="compare-item">
+          <img src="images/dota/d2-countdown.png" alt="3s countdown">
+          <span class="compare-label">3s countdown</span>
         </div>
-        <div class="step-footer-nav">
-          <button class="step-nav-btn invisible"><span class="arrow">‹</span> Prev</button>
-          <button class="step-nav-btn" onclick="showStep('d2',2)">Next <span class="arrow">›</span></button>
+        <div class="compare-item">
+          <img src="images/dota/d2-combat.png" alt="Combat begins">
+          <span class="compare-label">Combat begins</span>
         </div>
       </div>
 
-      <!-- Step 2 -->
-      <div class="step-card" id="d2s2">
-        <div class="step-header">
-          <div class="step-info">
-            <div class="step-counter">Step 2 of 3</div>
-            <div class="step-title">V2: Iteration</div>
-          </div>
-        </div>
-        <div class="step-divider"></div>
-        <div class="step-body">
-          <p class="step-text">Description of what changed in this iteration.</p>
-          <div class="phone-grid">
-            <div class="phone-item">
-              <img src="images/dota/d2-s2-screen.png" alt="V2 screen">
-              <span class="phone-label">Screen label</span>
-            </div>
-          </div>
-          <div class="statement-card">
-            <div class="statement-bar blue"></div>
-            <div class="statement-body">
-              <span class="statement-type">Improvement</span>
-              <p class="statement-text">What improved and what concern remained.</p>
-            </div>
-          </div>
-          <div class="insights">
-            <div class="insight">
-              <h5>1. Insight heading</h5>
-              <p>Explanation of the insight.</p>
-            </div>
-            <div class="insight">
-              <h5>2. Insight heading</h5>
-              <p>Explanation of the insight.</p>
-            </div>
-          </div>
-        </div>
-        <div class="step-footer-nav">
-          <button class="step-nav-btn" onclick="showStep('d2',1)"><span class="arrow">‹</span> Prev</button>
-          <button class="step-nav-btn" onclick="showStep('d2',3)">Next <span class="arrow">›</span></button>
+      <div class="statement-card">
+        <div class="statement-bar blue"></div>
+        <div class="statement-body">
+          <span class="statement-type">Improvement</span>
+          <p class="statement-text">Fountain respawn keeps both heroes at a safe distance after a death, no awkward standoffs, no bot camping the respawn point. New players always choose when to re-engage, rather than being immediately attacked the moment they come back.</p>
         </div>
       </div>
 
-      <!-- Step 3 -->
-      <div class="step-card" id="d2s3">
-        <div class="step-header">
-          <div class="step-info">
-            <div class="step-counter">Step 3 of 3</div>
-            <div class="step-title">Chosen: Final direction</div>
-          </div>
+      <div class="insights">
+        <div class="insight">
+          <h5>1. The countdown gives new players time to breathe</h5>
+          <p>Both heroes spawn as silhouettes with a 3-second countdown, giving new players time to buy items, set their level, and orient before combat starts. No scrambling to configure mid-fight.</p>
         </div>
-        <div class="step-divider"></div>
-        <div class="step-body">
-          <p class="step-text">Description of the chosen direction.</p>
-          <div class="phone-grid">
-            <div class="phone-item">
-              <img src="images/dota/d2-s3-screen.png" alt="Chosen screen">
-              <span class="phone-label">Screen label</span>
-            </div>
-          </div>
-          <div class="statement-card">
-            <div class="statement-bar green"></div>
-            <div class="statement-body">
-              <span class="statement-type">Chosen Direction</span>
-              <p class="statement-text">Why this was the right choice.</p>
-            </div>
-          </div>
-          <div class="insights">
-            <div class="insight">
-              <h5>1. Insight heading</h5>
-              <p>Explanation of the insight.</p>
-            </div>
-            <div class="insight">
-              <h5>2. Insight heading</h5>
-              <p>Explanation of the insight.</p>
-            </div>
-          </div>
-        </div>
-        <div class="step-footer-nav">
-          <button class="step-nav-btn" onclick="showStep('d2',2)"><span class="arrow">‹</span> Prev</button>
-          <button class="step-nav-btn invisible">Next <span class="arrow">›</span></button>
+        <div class="insight">
+          <h5>2. Reusing an existing mechanic lowers the learning curve</h5>
+          <p>The silhouette respawn mechanic already exists and is already understood by players. Reusing it for both the session start and the respawn phase means minimal engineering effort and zero new concepts for players to learn.</p>
         </div>
       </div>
     </div><!-- /decision 2 -->
-
-
-    <!-- ── DECISION 3 ── -->
-    <div class="decision-block">
-      <p class="decision-number">Decision 3: Decision label</p>
-      <h2 class="decision-heading">Decision heading</h2>
-      <p class="decision-desc">Description of the design challenge and context for this decision block.</p>
-
-      <!-- Step 1 -->
-      <div class="step-card active" id="d3s1">
-        <div class="step-header">
-          <div class="step-info">
-            <div class="step-counter">Step 1 of 2</div>
-            <div class="step-title">V1: The original</div>
-          </div>
-        </div>
-        <div class="step-divider"></div>
-        <div class="step-body">
-          <p class="step-text">Description of the original state.</p>
-          <div class="phone-grid">
-            <div class="phone-item">
-              <img src="images/dota/d3-s1-before.png" alt="Before">
-              <span class="phone-label">Before</span>
-            </div>
-            <div class="phone-item">
-              <img class="gif-img" src="images/dota/d3-s1-after.gif" alt="After">
-              <span class="phone-label">After</span>
-            </div>
-          </div>
-          <div class="statement-card">
-            <div class="statement-bar blue"></div>
-            <div class="statement-body">
-              <span class="statement-type">Improvement</span>
-              <p class="statement-text">What improved in this direction.</p>
-            </div>
-          </div>
-          <div class="insights">
-            <div class="insight">
-              <h5>1. Insight heading</h5>
-              <p>Explanation of the insight.</p>
-            </div>
-            <div class="insight">
-              <h5>2. Insight heading</h5>
-              <p>Explanation of the insight.</p>
-            </div>
-          </div>
-        </div>
-        <div class="step-footer-nav">
-          <button class="step-nav-btn invisible"><span class="arrow">‹</span> Prev</button>
-          <button class="step-nav-btn" onclick="showStep('d3',2)">Next <span class="arrow">›</span></button>
-        </div>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="step-card" id="d3s2">
-        <div class="step-header">
-          <div class="step-info">
-            <div class="step-counter">Step 2 of 2</div>
-            <div class="step-title">Chosen: Final direction</div>
-          </div>
-        </div>
-        <div class="step-divider"></div>
-        <div class="step-body">
-          <p class="step-text">Description of the chosen direction.</p>
-          <div class="phone-grid">
-            <div class="phone-item">
-              <img class="gif-img" src="images/dota/d3-s2-screen.gif" alt="Final screen">
-              <span class="phone-label">Screen label</span>
-            </div>
-          </div>
-          <div class="statement-card">
-            <div class="statement-bar green"></div>
-            <div class="statement-body">
-              <span class="statement-type">Chosen Direction</span>
-              <p class="statement-text">Why this was the right choice.</p>
-            </div>
-          </div>
-          <div class="insights">
-            <div class="insight">
-              <h5>1. Insight heading</h5>
-              <p>Explanation of the insight.</p>
-            </div>
-            <div class="insight">
-              <h5>2. Insight heading</h5>
-              <p>Explanation of the insight.</p>
-            </div>
-          </div>
-        </div>
-        <div class="step-footer-nav">
-          <button class="step-nav-btn" onclick="showStep('d3',1)"><span class="arrow">‹</span> Prev</button>
-          <button class="step-nav-btn invisible">Next <span class="arrow">›</span></button>
-        </div>
-      </div>
-    </div><!-- /decision 3 -->
 
     <div class="tab-footer-nav">
       <button class="tfn-prev" onclick="goToTab('tab-overview')">‹</button>
@@ -1269,90 +914,75 @@
   ════════════════════════════════════════ -->
   <div class="tab-content" id="tab-process">
 
-    <!-- MY ROLE -->
+    <!-- ABOUT THIS PROJECT -->
     <div class="process-section">
-      <h3>My Role</h3>
+      <h3>About This Project</h3>
       <div class="role-card">
         <div class="role-list">
           <div class="role-item role-item--highlight">
             <span class="role-dot role-dot--green"></span>
-            <span>Solo product designer</span>
+            <span>Solo designer</span>
           </div>
           <div class="role-item">
             <span class="role-dot"></span>
-            <span>1 product owner</span>
+            <span>Personal / speculative project</span>
           </div>
           <div class="role-item">
             <span class="role-dot"></span>
-            <span>2 frontend engineers</span>
+            <span>Not affiliated with Valve</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- HOW THE PROJECT UNFOLDED -->
+    <!-- INPUTS -->
     <div class="process-section">
-      <h3>How the Project Unfolded</h3>
-      <div class="timeline-card">
-        <div class="timeline-phase">
-          <h4>Discovery</h4>
-          <p>Description of the discovery phase, research done, and problems validated.</p>
-        </div>
-        <div class="timeline-phase">
-          <h4>Phase 1</h4>
-          <p>Description of the first phase of work and what it established.</p>
-        </div>
-        <div class="timeline-phase">
-          <h4>Phase 2</h4>
-          <p>Description of the second phase and key design decisions made.</p>
-        </div>
-        <div class="timeline-phase">
-          <h4>Result &amp; handoff</h4>
-          <p>Outcomes and how the project was handed off to engineering.</p>
-        </div>
-      </div>
-    </div>
+      <h3>Where the Inputs Came From</h3>
+      <p class="intro-text">This concept is grounded in direct experience and community evidence, not assumptions.</p>
 
-    <!-- CONSTRAINTS -->
-    <div class="process-section">
-      <h3>Constraints We Designed Around</h3>
-      <p class="intro-text">Not every idea made it to the final design. These are the tradeoffs we made deliberately.</p>
-
-      <div class="constraint-card">
-        <div class="constraint-bar"></div>
-        <div class="constraint-body">
-          <h4>Constraint title</h4>
-          <p>Description of the constraint and how it shaped the design.</p>
+      <div class="next-card">
+        <div class="next-bar"></div>
+        <div class="next-body">
+          <h4>Personal experience</h4>
+          <p>The direct origin of this feature concept, joining matches underprepared after skipping the tutorial and encountering the gap between Demo mode practice and real combat firsthand.</p>
         </div>
       </div>
 
-      <div class="constraint-card">
-        <div class="constraint-bar"></div>
-        <div class="constraint-body">
-          <h4>Constraint title</h4>
-          <p>Description of the constraint and how it shaped the design.</p>
+      <div class="next-card">
+        <div class="next-bar"></div>
+        <div class="next-body">
+          <h4>Steam Community forum</h4>
+          <p>New player threads from February 2024 confirming the same pattern independently: skip tutorial, land in Demo mode, hit the wall of no self-serve combat practice.</p>
         </div>
       </div>
     </div>
 
     <!-- WHAT'S NEXT -->
     <div class="process-section">
-      <h3>What's Next</h3>
-      <p class="intro-text">Even with the refinements shipped, there's room to go further.</p>
+      <h3>If This Shipped</h3>
+      <p class="intro-text">The immediate priority is validating Combat Training with real players.</p>
 
       <div class="next-card">
         <div class="next-bar"></div>
         <div class="next-body">
-          <h4>Next step title</h4>
-          <p>Description of a future direction or area to explore.</p>
+          <h4>Test whether the difficulty tiers feel right in a 1v1 context</h4>
+          <p>Easy, Medium, Hard, and Unfair were designed for full 5v5 bot matches. In a focused 1v1 setting, the same difficulty labels may feel very different, this would need calibration based on playtesting with actual new players.</p>
         </div>
       </div>
 
       <div class="next-card">
         <div class="next-bar"></div>
         <div class="next-body">
-          <h4>Next step title</h4>
-          <p>Description of a future direction or area to explore.</p>
+          <h4>Measure whether setup is fast enough</h4>
+          <p>The setup flow is intentionally minimal: pick enemy hero, choose difficulty, start. Whether new players find this fast enough, or whether the hero selection step creates friction, would be the first thing to test.</p>
+        </div>
+      </div>
+
+      <div class="next-card">
+        <div class="next-bar"></div>
+        <div class="next-body">
+          <h4>Measure impact on new player onboarding</h4>
+          <p>Ultimately, the question is whether Combat Training helps players feel more confident before entering real games, and whether that confidence translates to lower early-churn rates and longer player lifetimes.</p>
         </div>
       </div>
     </div>
@@ -1411,18 +1041,6 @@
     });
     document.getElementById(targetId).classList.add('active');
     scrollToTabNav();
-  }
-
-  function showStep(decision, stepNum) {
-    document.querySelectorAll('[id^="' + decision + 's"]').forEach(function(card) {
-      card.classList.remove('active');
-    });
-    var target = document.getElementById(decision + 's' + stepNum);
-    if (target) {
-      target.classList.add('active');
-      var offset = target.getBoundingClientRect().top + window.scrollY - 100;
-      window.scrollTo({ top: offset, behavior: 'smooth' });
-    }
   }
 </script>
   <script>
