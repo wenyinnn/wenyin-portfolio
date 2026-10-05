@@ -46,19 +46,33 @@
 
     /* ─── HERO ─── */
     .hero {
-      padding: 0;
+      padding: 48px 0 0;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 88px;
-      position: relative;
+      gap: 48px;
       margin-bottom: 56px;
     }
 
-    .hero-left {
-      flex: 1;
+    .hero-image {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .hero-text {
+      width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 31px;
     }
 
     .hero-title-group {
@@ -84,57 +98,19 @@
     }
 
     .hero-disclaimer {
-      background: var(--canvas);
-      border-radius: 12px;
-      padding: 16px 24px;
-      font-size: 14px;
-      color: var(--stone);
+      background: var(--bone);
+      border-radius: 16px;
+      padding: 32px;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--accent-dark);
       line-height: 1.6;
     }
 
-    .hero-visual {
-      position: relative;
-      width: 164px;
-      height: 335px;
-      flex-shrink: 0;
-    }
-
-    .hero-gradient {
-      position: absolute;
-      right: -77px;
-      top: 4px;
-      width: 323px;
-      height: 324px;
-      object-fit: contain;
-      z-index: 0;
-      border-radius: 0;
-      pointer-events: none;
-    }
-
-    .hero-phone {
-      position: relative;
-      z-index: 1;
-      width: 164px;
-      height: 335px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-phone img {
-      width: 190px;
-      height: auto;
-      object-fit: contain;
-      border-radius: 32px;
-      border: none;
-    }
-
     @media (max-width: 760px) {
-      .hero { flex-direction: column; gap: 40px; margin-bottom: 40px; }
-      .hero-visual { width: 120px; height: auto; }
-      .hero-phone { width: 120px; height: auto; }
-      .hero-phone img { width: 120px; }
+      .hero { gap: 32px; padding-top: 32px; }
       .hero-title { font-size: 32px; }
+      .hero-disclaimer { padding: 24px; }
     }
 
     /* ─── TAB CHIPS ─── */
@@ -500,48 +476,82 @@
       margin-bottom: 16px;
     }
 
-    .role-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
-      width: 100%;
-    }
+    .proc-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
 
-    .role-list { display: flex; flex-direction: column; gap: 12px; }
-
-    .role-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 4px 8px;
+    .proc-tag {
+      background: var(--bone);
+      border: 1px solid var(--bone-mid);
       border-radius: 8px;
-      font-size: 15px;
-      color: var(--stone);
-      line-height: 1.6;
+      padding: 5px 13px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
     }
 
-    .role-item--highlight { background: var(--green-light); color: var(--green-text); }
+    .proc-body-text {
+      font-size: 18px;
+      color: var(--ink);
+      line-height: 25px;
+      white-space: pre-wrap;
+      margin-bottom: 24px;
+    }
 
-    .role-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--stone); flex-shrink: 0; }
-    .role-dot--green { background: var(--green); }
+    .proc-screenshot {
+      width: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+      display: block;
+    }
 
-    .intro-text { font-size: 16px; color: var(--ink); line-height: 25px; margin-bottom: 24px; }
-
-    .next-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      display: flex;
-      overflow: hidden;
+    .proc-research-text {
+      font-size: 18px;
+      color: var(--ink);
+      line-height: 25px;
       margin-bottom: 16px;
     }
 
-    .next-bar { width: 8px; background: var(--blue); flex-shrink: 0; }
+    .proc-list {
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 32px;
+    }
 
-    .next-body { padding: 24px; display: flex; flex-direction: column; gap: 8px; }
-    .next-body h4 { font-size: 16px; font-weight: 500; color: var(--ink); }
-    .next-body p  { font-size: 14px; color: var(--stone); line-height: 1.7; }
+    .proc-list li {
+      font-size: 18px;
+      color: var(--ink);
+      line-height: 25px;
+    }
+
+    .quote-cards { display: flex; flex-direction: column; gap: 16px; }
+
+    .quote-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 17px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .quote-text { font-size: 18px; color: var(--ink); line-height: 25px; }
+    .quote-source { font-size: 14px; color: var(--stone); line-height: 25px; }
+
+    .limitations-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 17px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .limitation-item { display: flex; flex-direction: column; gap: 6px; }
+    .limitation-title { font-size: 18px; font-weight: 500; color: var(--ink); line-height: 25px; }
+    .limitation-body  { font-size: 14px; color: var(--stone); line-height: 25px; }
 
     /* ─── NAVBAR ─── */
     .navbar {
@@ -715,19 +725,16 @@
 
   <!-- ─── HERO ─── -->
   <section class="hero">
-    <div class="hero-left">
+    <div class="hero-image">
+      <img src="images/dota/hero-screen.png" alt="Dota 2 Combat Training screen">
+    </div>
+    <div class="hero-text">
       <div class="hero-title-group">
-        <h1 class="hero-title">Dota 2: Combat<br>Training</h1>
+        <h1 class="hero-title">Dota 2: Combat Training</h1>
         <p class="hero-desc">A feature concept for Dota 2 exploring how focused 1v1 bot combat could help players practice fighting specific heroes, without committing to a full game.</p>
       </div>
       <div class="hero-disclaimer">
         A personal project exploring a feature idea for Dota 2, not affiliated with, commissioned by, or endorsed by Valve Corporation.
-      </div>
-    </div>
-    <div class="hero-visual">
-      <img class="hero-gradient" src="images/dota/hero-bg.png" alt="">
-      <div class="hero-phone">
-        <img src="images/dota/hero-screen.png" alt="Dota 2 Combat Training screen">
       </div>
     </div>
   </section>
@@ -848,6 +855,10 @@
           <p>Want to test a new or unfamiliar hero in realistic combat before committing to a ranked game, without the overhead of a full bot match.</p>
         </div>
       </div>
+      <div class="screenshot-block">
+        <img src="images/dota/proposed-training.png" alt="Proposed Combat Training">
+        <span class="screenshot-caption">Proposed Combat Training: Bot-controlled enemy actively fights back, no friend or manual control needed.</span>
+      </div>
     </div>
 
     <div class="tab-footer-nav">
@@ -872,7 +883,7 @@
 
     <!-- ── DECISION 1 ── -->
     <div class="decision-block">
-      <p class="decision-number">Decision 1: The Combat Panel</p>
+      <p class="decision-number">Context</p>
       <h2 class="decision-heading">Fight a bot enemy right inside Demo mode</h2>
       <p class="decision-desc">Once a user adds an enemy via '+Enemy', a COMBAT section appears in the panel. New players can select a difficulty — Easy, Medium, Hard, or Unfair (the same tiers already used in bot matches), and start a live 1v1 fight. The enemy stops standing still and actively fights back.</p>
 
@@ -1035,72 +1046,49 @@ Right: After '+Enemy' is clicked, a Combat section appears with difficulty check
     <!-- ABOUT THIS PROJECT -->
     <div class="process-section">
       <h3>About This Project</h3>
-      <div class="role-card">
-        <div class="role-list">
-          <div class="role-item role-item--highlight">
-            <span class="role-dot role-dot--green"></span>
-            <span>Solo designer</span>
-          </div>
-          <div class="role-item">
-            <span class="role-dot"></span>
-            <span>Personal / speculative project</span>
-          </div>
-          <div class="role-item">
-            <span class="role-dot"></span>
-            <span>Not affiliated with Valve</span>
-          </div>
+      <div class="proc-tags">
+        <span class="proc-tag">Personal / speculative project</span>
+        <span class="proc-tag">Solo designer</span>
+        <span class="proc-tag">Not affiliated with Valve</span>
+      </div>
+      <p class="proc-body-text">Dota 2 is a game I genuinely enjoy, but learning it wasn't easy. I came in as a complete beginner, figured things out the hard way, and found myself wishing the game was more accessible to new players like me. Part of that is selfish: more accessible means more friends willing to try it, and more people to play with.</p>
+      <p class="proc-body-text">The learning curve in Dota is steep, and that's what pushed me to think about how my product design background could contribute something useful. Combat Training won't solve the steep learning curve entirely (that's a much bigger problem). But I believe it removes one real barrier: the gap between knowing 'what your hero does' and feeling confident enough to use it in a real fight. Whether you're a new player building up courage before your first ranked game, or an experienced player trying out an unfamiliar hero, having a safe space to practice combat without consequences is something the game is currently missing.</p>
+      <img class="proc-screenshot" src="images/dota/process-screen.png" alt="About this project screenshot">
+    </div>
+
+    <!-- RESEARCH -->
+    <div class="process-section">
+      <h3>Research</h3>
+      <p class="proc-research-text">The inputs are gathered from:</p>
+      <ul class="proc-list">
+        <li>My own experience starting in December 2025</li>
+        <li>A friend who started Dota 2 around the same time and independently followed the same path</li>
+        <li>Conversations with friends who've played for 10+ years</li>
+        <li>Steam Community forums where new players describe their frustrations in specific, usable detail.</li>
+      </ul>
+      <div class="quote-cards">
+        <div class="quote-card">
+          <p class="quote-text">'I feel more prepared to run or fight after training with a friend inside Demo mode, but I can't always ask them.'</p>
+          <p class="quote-source">- Personal experience, the direct origin of this feature concept</p>
+        </div>
+        <div class="quote-card">
+          <p class="quote-text">'I completed the tutorial and went into a real game. I get obliterated in seconds whenever an enemy sees me. I don't know what to do and I'm thinking of quitting.'</p>
+          <p class="quote-source">- Steam Community forum, new player, February 2024</p>
         </div>
       </div>
     </div>
 
-    <!-- INPUTS -->
+    <!-- LIMITATIONS -->
     <div class="process-section">
-      <h3>Where the Inputs Came From</h3>
-      <p class="intro-text">This concept is grounded in direct experience and community evidence, not assumptions.</p>
-
-      <div class="next-card">
-        <div class="next-bar"></div>
-        <div class="next-body">
-          <h4>Personal experience</h4>
-          <p>The direct origin of this feature concept, joining matches underprepared after skipping the tutorial and encountering the gap between Demo mode practice and real combat firsthand.</p>
+      <h3>Limitations</h3>
+      <div class="limitations-card">
+        <div class="limitation-item">
+          <p class="limitation-title">1. 1v1 bot practice doesn't replicate real game dynamics</p>
+          <p class="limitation-body">A real Dota game involves 5 players per team, coordinated team fights, and macro strategy. Combat Training improves individual hero mechanics and combat confidence, but can't replicate team collaboration, communication, or the unpredictability of real opponents. That gap remains.</p>
         </div>
-      </div>
-
-      <div class="next-card">
-        <div class="next-bar"></div>
-        <div class="next-body">
-          <h4>Steam Community forum</h4>
-          <p>New player threads from February 2024 confirming the same pattern independently: skip tutorial, land in Demo mode, hit the wall of no self-serve combat practice.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- WHAT'S NEXT -->
-    <div class="process-section">
-      <h3>If This Shipped</h3>
-      <p class="intro-text">The immediate priority is validating Combat Training with real players.</p>
-
-      <div class="next-card">
-        <div class="next-bar"></div>
-        <div class="next-body">
-          <h4>Test whether the difficulty tiers feel right in a 1v1 context</h4>
-          <p>Easy, Medium, Hard, and Unfair were designed for full 5v5 bot matches. In a focused 1v1 setting, the same difficulty labels may feel very different, this would need calibration based on playtesting with actual new players.</p>
-        </div>
-      </div>
-
-      <div class="next-card">
-        <div class="next-bar"></div>
-        <div class="next-body">
-          <h4>Measure whether setup is fast enough</h4>
-          <p>The setup flow is intentionally minimal: pick enemy hero, choose difficulty, start. Whether new players find this fast enough, or whether the hero selection step creates friction, would be the first thing to test.</p>
-        </div>
-      </div>
-
-      <div class="next-card">
-        <div class="next-bar"></div>
-        <div class="next-body">
-          <h4>Measure impact on new player onboarding</h4>
-          <p>Ultimately, the question is whether Combat Training helps players feel more confident before entering real games, and whether that confidence translates to lower early-churn rates and longer player lifetimes.</p>
+        <div class="limitation-item">
+          <p class="limitation-title">2. Design without official assets</p>
+          <p class="limitation-body">Dota 2's UI assets aren't publicly available, so the mockups in this case study are hand-crafted to match the visual language as closely as possible, not pixel-perfect reproductions. The design intent is accurate; the fidelity is approximated.</p>
         </div>
       </div>
     </div>
