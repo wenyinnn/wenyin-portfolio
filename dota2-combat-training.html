@@ -55,17 +55,31 @@
     }
 
     .hero-image {
+      position: relative;
       width: 100%;
       max-width: 500px;
-      border-radius: 16px;
-      overflow: hidden;
+      display: flex;
+      justify-content: center;
     }
 
-    .hero-image img {
+    .hero-image img.hero-screen {
+      position: relative;
+      z-index: 1;
       width: 100%;
       height: auto;
       display: block;
-      object-fit: cover;
+      border-radius: 16px;
+    }
+
+    .hero-image img.hero-gradient {
+      position: absolute;
+      right: -60px;
+      top: 10px;
+      width: 323px;
+      height: 324px;
+      object-fit: contain;
+      z-index: 0;
+      pointer-events: none;
     }
 
     .hero-text {
@@ -735,7 +749,8 @@
   <!-- ─── HERO ─── -->
   <section class="hero">
     <div class="hero-image">
-      <img src="images/dota/hero-screen.png" alt="Dota 2 Combat Training screen">
+      <img class="hero-gradient" src="images/dota/hero-bg.png" alt="">
+      <img class="hero-screen" src="images/dota/hero-screen.png" alt="Dota 2 Combat Training screen">
     </div>
     <div class="hero-text">
       <div class="hero-title-group">
