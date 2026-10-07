@@ -369,11 +369,13 @@
     }
 
     .compare-item img {
-      width: 220px;
       height: auto;
       border-radius: 0;
       display: block;
     }
+
+    .compare-item--current img { width: 222px; }
+    .compare-item--proposed img { width: 320px; }
 
     .compare-label {
       font-size: 14px;
@@ -907,11 +909,11 @@
 Right: After '+Enemy' is clicked, a Combat section appears with difficulty checkboxes and a 'Start Combat' button.</p>
 
           <div class="compare-pair">
-            <div class="compare-item">
+            <div class="compare-item compare-item--current">
               <img src="images/dota/d1-current.png" alt="Current Demo mode panel">
               <span class="compare-label">Current: No combat option</span>
             </div>
-            <div class="compare-item">
+            <div class="compare-item compare-item--proposed">
               <img src="images/dota/d1-proposed.png" alt="Proposed Demo mode panel with combat section">
               <span class="compare-label">Proposed: Combat section with difficulties &amp; CTA</span>
             </div>
